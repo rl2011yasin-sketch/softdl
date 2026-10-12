@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سافت دانلود | SoftDL - مرجع دانلود نرم‌افزار و بازی</title>
+<meta name="description" content="سافت دانلود - دانلود جدیدترین برنامه‌ها و بازی‌های اندروید و ویندوز">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#dbeafe;
+  --bg:#f1f5f9;--card:#fff;--text:#0f172a;
+  --muted:#64748b;--border:#e2e8f0;--radius:14px;
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-lg:0 10px 25px rgba(0,0,0,.1);
+}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button,input,select,textarea{font-family:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+
+/* Header */
+.site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+.header-inner{display:flex;align-items:center;gap:20px;padding:12px 16px}
+.logo a{display:flex;align-items:center;gap:10px}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:12px;display:grid;place-items:center;color:#fff;font-size:22px;font-weight:800}
+.logo-text{font-weight:800;font-size:20px;color:var(--text);line-height:1.2}
+.logo-text small{display:block;font-size:10px;color:var(--muted);font-weight:600;letter-spacing:2px}
+.main-nav ul{display:flex;gap:2px;list-style:none}
+.main-nav a{padding:8px 14px;border-radius:8px;font-weight:600;font-size:14px;color:var(--muted);transition:.2s;cursor:pointer}
+.main-nav a:hover,.main-nav a.active{background:var(--primary-light);color:var(--primary)}
+.header-actions{margin-right:auto;display:flex;gap:10px;align-items:center}
+.search-box{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.search-box input{border:0;background:transparent;padding:10px 14px;outline:none;width:220px;font-size:13px}
+.search-box button{border:0;background:transparent;padding:0 12px;cursor:pointer;font-size:15px}
+.mobile-menu-btn{display:none;background:none;border:0;font-size:22px;cursor:pointer}
+
+/* Category Bar */
+.category-bar{background:#fff;border-bottom:1px solid var(--border)}
+.category-inner{display:flex;gap:6px;padding:10px 16px;overflow-x:auto;scrollbar-width:none}
+.category-inner::-webkit-scrollbar{display:none}
+.cat-item{padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;cursor:pointer;transition:.2s;border:1px solid transparent}
+.cat-item:hover,.cat-item.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* Layout */
+.main-layout{display:grid;grid-template-columns:280px 1fr;gap:22px;padding:22px 0}
+.sidebar{display:flex;flex-direction:column;gap:16px}
+.widget{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.widget-title{font-size:15px;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative}
+.widget-title::after{content:'';position:absolute;bottom:-2px;right:0;width:50px;height:2px;background:var(--primary)}
+.widget-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.widget-list a{display:flex;justify-content:space-between;align-items:center;padding:9px 6px;font-size:13px;border-radius:8px;transition:.2s;cursor:pointer}
+.widget-list a:hover{background:var(--bg);color:var(--primary)}
+.widget-list span{color:var(--muted);font-size:11px;background:var(--bg);padding:2px 8px;border-radius:10px}
+
+/* Hero */
+.hero-banner{background:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%);border-radius:var(--radius);padding:38px 32px;color:#fff;margin-bottom:22px;position:relative;overflow:hidden}
+.hero-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 40%,rgba(255,255,255,.18),transparent 55%)}
+.hero-content{position:relative;z-index:1}
+.hero-content h2{font-size:26px;margin-bottom:8px;font-weight:800}
+.hero-content p{opacity:.92;margin-bottom:20px;font-size:14px}
+.btn{display:inline-block;padding:10px 22px;border-radius:10px;font-weight:700;font-size:14px;border:0;cursor:pointer;transition:.2s;text-align:center}
+.btn-primary{background:#fff;color:var(--primary)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-blue{background:var(--primary);color:#fff}
+.btn-blue:hover{background:var(--primary-dark)}
+
+/* Sections */
+.apps-section{margin-bottom:30px}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.section-header h2{font-size:18px;font-weight:800}
+.view-all{font-size:13px;color:var(--primary);font-weight:700}
+
+/* App Cards */
+.apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.app-card{background:var(--card);border-radius:var(--radius);padding:16px 14px;box-shadow:var(--shadow);transition:.25s;cursor:pointer;border:1px solid transparent;position:relative}
+.app-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+.app-card-icon{width:66px;height:66px;border-radius:16px;margin:0 auto 10px;object-fit:cover;background:var(--bg);box-shadow:var(--shadow)}
+.app-card h3{font-size:14px;text-align:center;margin-bottom:4px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.app-card .meta{font-size:11px;color:var(--muted);display:flex;justify-content:center;gap:6px}
+.app-card .cat-badge{position:absolute;top:8px;right:8px;background:var(--primary-light);color:var(--primary);font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px}
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1}
+.empty-state .icon{font-size:48px;margin-bottom:12px;opacity:.5}
+
+/* Footer */
+.site-footer{background:#0f172a;color:#cbd5e1;margin-top:40px;padding:40px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;padding-bottom:30px}
+.footer-col h4{color:#fff;margin-bottom:14px;font-size:15px}
+.footer-col p{font-size:13px;line-height:1.9}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13px}
+.footer-col a:hover{color:#fff}
+.social-links{display:flex;gap:10px}
+.social-links a{width:38px;height:38px;background:#1e293b;border-radius:10px;display:grid;place-items:center;font-size:18px;transition:.2s}
+.social-links a:hover{background:var(--primary)}
+.footer-bottom{border-top:1px solid #1e293b;padding:18px 0;text-align:center;font-size:13px}
+
+/* Admin (hidden - only Ctrl+Shift+A) */
+.admin-overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(6px);z-index:9999;display:none;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
+.admin-overlay.open{display:flex}
+.admin-panel{background:#fff;border-radius:16px;width:100%;max-width:920px;box-shadow:0 25px 50px rgba(0,0,0,.35);overflow:hidden;margin:auto}
+.admin-header{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
+.admin-header h2{font-size:17px;font-weight:800}
+.admin-header small{opacity:.7;font-size:11px}
+.admin-close{background:rgba(255,255,255,.12);border:0;color:#fff;width:34px;height:34px;border-radius:10px;cursor:pointer;font-size:20px;transition:.2s}
+.admin-close:hover{background:rgba(255,255,255,.25)}
+.admin-tabs{display:flex;background:var(--bg);border-bottom:1px solid var(--border);overflow-x:auto}
+.admin-tab{flex:1;min-width:130px;padding:14px 10px;border:0;background:transparent;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:.2s;white-space:nowrap}
+.admin-tab.active{color:var(--primary);border-bottom-color:var(--primary);background:#fff}
+.admin-body{padding:22px;max-height:70vh;overflow-y:auto}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-size:13px;outline:none;transition:.2s;background:#fff}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}
+.form-group textarea{resize:vertical;min-height:80px;line-height:1.7}
+.form-group small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-save{background:var(--primary);color:#fff;padding:11px 26px;font-size:14px}
+.btn-save:hover{background:var(--primary-dark)}
+.btn-save:disabled{opacity:.6;cursor:not-allowed}
+.btn-danger{background:#ef4444;color:#fff;padding:8px 14px;font-size:12px}
+.btn-danger:hover{background:#dc2626}
+.btn-secondary{background:var(--bg);color:var(--text);border:1px solid var(--border);padding:8px 16px;font-size:13px}
+.btn-secondary:hover{background:var(--border)}
+
+/* File drop */
+.file-drop{border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:.2s;background:var(--bg)}
+.file-drop:hover{border-color:var(--primary);background:var(--primary-light)}
+.file-drop .icon{font-size:28px;margin-bottom:6px;opacity:.6}
+.file-drop p{font-size:13px;font-weight:600}
+.file-drop small{color:var(--muted);font-size:11px}
+.file-drop input{display:none}
+.file-preview{margin-top:10px;font-size:12px;color:var(--primary);font-weight:600}
+
+/* Manage list */
+.manage-list{display:flex;flex-direction:column;gap:10px}
+.manage-item{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:12px;transition:.2s}
+.manage-item:hover{border-color:var(--primary-light);background:#fafbff}
+.manage-item img{width:48px;height:48px;border-radius:12px;object-fit:cover;background:var(--bg)}
+.manage-item .info{flex:1;min-width:0}
+.manage-item .info h4{font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.manage-item .info small{color:var(--muted);font-size:12px}
+
+/* Status */
+.status-box{padding:12px 14px;border-radius:10px;font-size:13px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.status-ok{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}
+.status-warn{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+.status-err{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+
+/* Detail modal */
+.detail-overlay{position:fixed;inset:0;background:rgba(15,23,42,.7);backdrop-filter:blur(4px);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px}
+.detail-overlay.open{display:flex}
+.detail-box{background:#fff;border-radius:18px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 25px 50px rgba(0,0,0,.35);position:relative}
+.detail-head{padding:24px 24px 18px;display:flex;gap:16px;align-items:center;border-bottom:1px solid var(--border)}
+.detail-head img{width:80px;height:80px;border-radius:18px;background:var(--bg)}
+.detail-head h2{font-size:19px;font-weight:800;margin-bottom:4px}
+.detail-head p{color:var(--muted);font-size:13px}
+.detail-body{padding:20px 24px}
+.detail-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.detail-meta div{background:var(--bg);padding:10px;border-radius:10px;text-align:center}
+.detail-meta span{display:block;font-size:11px;color:var(--muted);margin-bottom:2px}
+.detail-meta strong{font-size:14px}
+.detail-desc{font-size:14px;line-height:1.9;margin-bottom:18px;color:#334155;white-space:pre-wrap}
+.detail-actions{display:flex;gap:10px;flex-wrap:wrap}
+.detail-actions .btn{flex:1;min-width:140px}
+.detail-close{position:absolute;top:16px;left:16px;background:var(--bg);border:0;width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:20px;z-index:2}
+.download-note{background:#fffbeb;border:1px solid #fde68a;color:#92400e;font-size:12px;padding:8px 12px;border-radius:8px;margin-top:10px;line-height:1.8}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;left:24px;background:#1e293b;color:#fff;padding:13px 22px;border-radius:12px;box-shadow:var(--shadow-lg);transform:translateY(120px);opacity:0;transition:.35s;z-index:10001;font-size:14px;font-weight:600;max-width:340px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{background:#059669}
+.toast.error{background:#dc2626}
+.toast.info{background:#2563eb}
+
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:40px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:900px){
+  .main-layout{grid-template-columns:1fr}
+  .sidebar{order:2}
+  .main-nav{display:none}
+  .search-box input{width:150px}
+  .footer-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-content h2{font-size:20px}
+  .detail-meta{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .search-box{display:none}
+  .header-inner{gap:10px}
+  .logo-text{font-size:17px}
+  .apps-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">
+      <a href="#" onclick="resetFilter();return false">
+        <div class="logo-icon">S</div>
+        <div class="logo-text">سافت دانلود<small>SOFTDL</small></div>
+      </a>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#" class="active nav-link" onclick="resetFilter();return false">صفحه اصلی</a></li>
+        <li><a href="#" class="nav-link" onclick="filterByCategory('اپلیکیشن');return false">اپلیکیشن</a></li>
+        <li><a href="#" class="nav-link" onclick="filterByCategory('بازی');return false">بازی</a></li>
+        <li><a href="#" class="nav-link" onclick="filterByCategory('ابزار');return false">ابزار</a></li>
+        <li><a href="#" class="nav-link" onclick="filterByCategory('آموزشی');return false">آموزشی</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="جستجو کنید..." onkeydown="if(event.key==='Enter')doSearch()">
+        <button onclick="doSearch()">🔍</button>
+      </div>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- CATEGORY BAR -->
+<div class="category-bar">
+  <div class="container category-inner">
+    <span class="cat-item active" data-cat="همه" onclick="filterByCategory('همه')">همه</span>
+    <span class="cat-item" data-cat="اپلیکیشن" onclick="filterByCategory('اپلیکیشن')">اپلیکیشن</span>
+    <span class="cat-item" data-cat="بازی" onclick="filterByCategory('بازی')">بازی</span>
+    <span class="cat-item" data-cat="ابزار" onclick="filterByCategory('ابزار')">ابزار</span>
+    <span class="cat-item" data-cat="آموزشی" onclick="filterByCategory('آموزشی')">آموزشی</span>
+    <span class="cat-item" data-cat="شخصی‌سازی" onclick="filterByCategory('شخصی‌سازی')">شخصی‌سازی</span>
+    <span class="cat-item" data-cat="امنیتی" onclick="filterByCategory('امنیتی')">امنیتی</span>
+    <span class="cat-item" data-cat="مالتی‌مدیا" onclick="filterByCategory('مالتی‌مدیا')">مالتی‌مدیا</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="container main-layout">
+  <aside class="sidebar">
+    <div class="widget">
+      <h3 class="widget-title">آخرین برنامه‌ها</h3>
+      <ul class="widget-list" id="latestApps"><li style="color:#94a3b8;font-size:13px;padding:6px">در حال بارگذاری...</li></ul>
+    </div>
+    <div class="widget">
+      <h3 class="widget-title">دسته‌بندی‌ها</h3>
+      <ul class="widget-list" id="catWidget"></ul>
+    </div>
+    <div class="widget">
+      <h3 class="widget-title">💡 پیشنهاد</h3>
+      <p style="font-size:12px;color:var(--muted);line-height:1.9">
+        برای پیدا کردن سریع‌تر از جستجو یا دسته‌بندی‌ها استفاده کنید.
+      </p>
+    </div>
+  </aside>
+
+  <div class="content-area">
+    <div class="hero-banner">
+      <div class="hero-content">
+        <h2>جدیدترین برنامه‌ها را دانلود کنید</h2>
+        <p>برنامه‌های اندروید، ویندوز و بازی‌های روز دنیا — مستقیم و سریع</p>
+        <button class="btn btn-primary" onclick="resetFilter()">مشاهده همه ↓</button>
+      </div>
+    </div>
+
+    <section class="apps-section">
+      <div class="section-header">
+        <h2 id="sectionTitle">📱 آخرین برنامه‌ها</h2>
+        <span class="view-all" id="appCount"></span>
+      </div>
+      <div id="appsGrid" class="apps-grid">
+        <div class="empty-state"><div class="icon">⏳</div><p>در حال بارگذاری...</p></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>درباره سافت دانلود</h4>
+      <p>سافت دانلود (SoftDL) مرجع دانلود برنامه‌ها و بازی‌های اندروید و ویندوز. تمام فایل‌ها از منابع معتبر جمع‌آوری می‌شوند.</p>
+    </div>
+    <div class="footer-col">
+      <h4>لینک‌های سریع</h4>
+      <ul>
+        <li><a href="#">صفحه اصلی</a></li>
+        <li><a href="#">درباره ما</a></li>
+        <li><a href="#">تماس با ما</a></li>
+        <li><a href="#">حریم خصوصی</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>شبکه‌های اجتماعی</h4>
+      <div class="social-links">
+        <a href="#" title="GitHub">🐙</a>
+        <a href="#" title="Telegram">✈️</a>
+        <a href="#" title="Instagram">📷</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© ۱۴۰۵ سافت دانلود | SoftDL — تمامی حقوق محفوظ است</p>
+  </div>
+</footer>
+
+<!-- ADMIN PANEL (hidden - Ctrl+Shift+A) -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <div>
+        <h2>⚙️ پنل مدیریت</h2>
+        <small>SoftDL Admin</small>
+      </div>
+      <button class="admin-close" onclick="closeAdmin()">×</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="tab-settings" onclick="switchTab('tab-settings')">🔑 اتصال</button>
+      <button class="admin-tab" data-tab="tab-add" onclick="switchTab('tab-add')">➕ افزودن برنامه</button>
+      <button class="admin-tab" data-tab="tab-manage" onclick="switchTab('tab-manage')">📋 مدیریت</button>
+    </div>
+    <div class="admin-body">
+
+      <!-- Settings Tab -->
+      <div class="tab-content active" id="tab-settings">
+        <div id="settingsStatus"></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>نام کاربری گیت‌هاب *</label>
+            <input type="text" id="cfgOwner" placeholder="username">
+          </div>
+          <div class="form-group">
+            <label>نام مخزن *</label>
+            <input type="text" id="cfgRepo" placeholder="my-softdl">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>شاخه (Branch)</label>
+            <input type="text" id="cfgBranch" placeholder="main" value="main">
+          </div>
+          <div class="form-group">
+            <label>توکن گیت‌هاب *</label>
+            <input type="password" id="cfgToken" placeholder="ghp_xxxxxxxxxxxxxxxx" autocomplete="off">
+          </div>
+        </div>
+        <div class="form-group">
+          <small style="background:#fef2f2;color:#991b1b;padding:10px;border-radius:8px;display:block;line-height:1.8">
+            🔒 <b>توجه:</b> توکن فقط در حافظه مرورگر نگه داشته می‌شود و با رفرش پاک می‌شود. هرگز در جایی ذخیره نمی‌شود.<br>
+            📌 ساخت توکن: <code>GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)</code> و دسترسی <b>repo</b> را فعال کنید.
+          </small>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+          <button class="btn btn-save" onclick="saveSettings()">💾 اتصال</button>
+          <button class="btn btn-secondary" onclick="testConnection()">🔌 تست</button>
+          <button class="btn btn-secondary" onclick="reloadAppsFromRepo()">🔄 بارگذاری</button>
+        </div>
+      </div>
+
+      <!-- Add App Tab -->
+      <div class="tab-content" id="tab-add">
+        <form id="addAppForm" onsubmit="event.preventDefault();publishApp()">
+          <div class="form-row">
+            <div class="form-group">
+              <label>نام برنامه *</label>
+              <input type="text" id="appName" required placeholder="مثلا: تلگرام">
+            </div>
+            <div class="form-group">
+              <label>دسته‌بندی *</label>
+              <select id="appCategory" required>
+                <option value="اپلیکیشن">اپلیکیشن</option>
+                <option value="بازی">بازی</option>
+                <option value="ابزار">ابزار</option>
+                <option value="آموزشی">آموزشی</option>
+                <option value="شخصی‌سازی">شخصی‌سازی</option>
+                <option value="امنیتی">امنیتی</option>
+                <option value="مالتی‌مدیا">مالتی‌مدیا</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>نسخه</label>
+              <input type="text" id="appVersion" placeholder="10.5.2">
+            </div>
+            <div class="form-group">
+              <label>توسعه‌دهنده</label>
+              <input type="text" id="appDev" placeholder="Telegram FZ-LLC">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>حجم فایل</label>
+              <input type="text" id="appSize" placeholder="25 MB">
+            </div>
+            <div class="form-group">
+              <label>سیستم‌عامل</label>
+              <input type="text" id="appOs" placeholder="Android 5.0+">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>لینک دانلود *</label>
+            <input type="url" id="appLink" required placeholder="https://example.com/file.apk">
+            <small>لینک مستقیم دانلود از هر سایتی — کاربر روی دکمه دانلود کلیک می‌کند و به این لینک می‌رود</small>
+          </div>
+          <div class="form-group">
+            <label>توضیحات *</label>
+            <textarea id="appDesc" required placeholder="توضیحات کامل برنامه..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>آیکون برنامه *</label>
+            <div class="file-drop" onclick="document.getElementById('iconFile').click()">
+              <div class="icon">🖼️</div>
+              <p>برای انتخاب آیکون کلیک کنید</p>
+              <small>PNG، JPG یا WebP — به گیت‌هاب آپلود می‌شود</small>
+              <input type="file" id="iconFile" accept="image/*" onchange="previewIcon()">
+            </div>
+            <div class="file-preview" id="iconPreview"></div>
+          </div>
+          <div id="publishStatus"></div>
+          <button type="submit" class="btn btn-save" id="publishBtn" style="width:100%;margin-top:8px">
+            🚀 انتشار روی سایت
+          </button>
+        </form>
+      </div>
+
+      <!-- Manage Tab -->
+      <div class="tab-content" id="tab-manage">
+        <div class="status-box status-warn">⚠️ برای حذف، روی دکمه قرمز کلیک کنید. تغییرات بلافاصله اعمال می‌شود.</div>
+        <div class="manage-list" id="manageList"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
+  <div class="detail-box" id="detailBox"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   SoftDL - Hidden Admin Panel via GitHub API
+   - Open with Ctrl+Shift+A
+   - Token: only in memory
+   - Data: data/apps.json in GitHub repo
+   - Files: only icons uploaded; download links external
+   ========================================================= */
+
+const LS_KEY = 'softdl_cfg_v1';
+let ghToken = '';
+let ghConfig = { owner: '', repo: '', branch: 'main' };
+let allApps = [];
+let currentFilter = 'همه';
+let currentSearch = '';
+
+/* INIT */
+document.addEventListener('DOMContentLoaded', () => {
+  loadConfig();
+  loadAppsFromRepo();
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a' || e.key === 'آ')) {
+      e.preventDefault();
+      toggleAdmin();
+    }
+    if (e.key === 'Escape') closeDetail();
+  });
+});
+
+function loadConfig() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    if (saved.owner) ghConfig.owner = saved.owner;
+    if (saved.repo) ghConfig.repo = saved.repo;
+    if (saved.branch) ghConfig.branch = saved.branch;
+  } catch(e) {}
+  document.getElementById('cfgOwner').value = ghConfig.owner;
+  document.getElementById('cfgRepo').value = ghConfig.repo;
+  document.getElementById('cfgBranch').value = ghConfig.branch || 'main';
+}
+
+function saveConfig() {
+  localStorage.setItem(LS_KEY, JSON.stringify(ghConfig));
+}
+
+/* ADMIN TOGGLE */
+function toggleAdmin() {
+  const ov = document.getElementById('adminOverlay');
+  if (ov.classList.contains('open')) {
+    ov.classList.remove('open');
+  } else {
+    ov.classList.add('open');
+    refreshSettingsStatus();
+    renderManageList();
+  }
+}
+function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
+
+function switchTab(tabId) {
+  document.querySelectorAll('.admin-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === tabId));
+  if (tabId === 'tab-manage') renderManageList();
+}
+
+/* ICON PREVIEW */
+function previewIcon() {
+  const input = document.getElementById('iconFile');
+  const preview = document.getElementById('iconPreview');
+  if (input.files && input.files[0]) {
+    const f = input.files[0];
+    preview.textContent = `✓ ${f.name} (${(f.size/1024).toFixed(1)} KB)`;
+  } else {
+    preview.textContent = '';
+  }
+}
+
+/* GITHUB API */
+async function ghApi(path, options = {}) {
+  const res = await fetch(`https://api.github.com${path}`, {
+    ...options,
+    headers: {
+      'Authorization': `token ${ghToken}`,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(options.headers || {})
+    }
+  });
+  return res;
+}
+
+async function ghGetFile(path) {
+  const res = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
+  if (res.status === 404) return null;
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || `خطا در خواندن ${path}`);
+  }
+  const data = await res.json();
+  const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+  return { sha: data.sha, content };
+}
+
+async function ghPutFile(path, base64Content, message) {
+  const existingRes = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
+  let sha = null;
+  if (existingRes.ok) {
+    const existing = await existingRes.json();
+    sha = existing.sha;
+  } else if (existingRes.status !== 404) {
+    const err = await existingRes.json().catch(() => ({}));
+    throw new Error(err.message || `خطا در بررسی ${path}`);
+  }
+  const body = { message: message || `SoftDL: update ${path}`, content: base64Content, branch: ghConfig.branch };
+  if (sha) body.sha = sha;
+  const res = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || `خطا در آپلود ${path}`);
+  }
+  return await res.json();
+}
+
+async function ghDeleteFile(path, message) {
+  const res = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
+  if (!res.ok) return;
+  const data = await res.json();
+  await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: message || `SoftDL: delete ${path}`, sha: data.sha, branch: ghConfig.branch })
+  });
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result.split(',')[1]);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+
+/* SETTINGS */
+function saveSettings() {
+  const owner = document.getElementById('cfgOwner').value.trim();
+  const repo = document.getElementById('cfgRepo').value.trim();
+  const branch = document.getElementById('cfgBranch').value.trim() || 'main';
+  const token = document.getElementById('cfgToken').value.trim();
+  if (!owner || !repo || !token) {
+    setStatus('settingsStatus', 'err', '❌ نام کاربری، مخزن و توکن الزامی هستند.');
+    return;
+  }
+  ghConfig = { owner, repo, branch };
+  ghToken = token;
+  saveConfig();
+  setStatus('settingsStatus', 'ok', '✅ اتصال برقرار شد. توکن فقط در این تب فعال است.');
+  toast('اتصال برقرار شد', 'success');
+  refreshSettingsStatus();
+  loadAppsFromRepo();
+}
+
+function refreshSettingsStatus() {
+  if (ghToken && ghConfig.owner && ghConfig.repo) {
+    setStatus('settingsStatus', 'ok', `✅ متصل به: ${ghConfig.owner}/${ghConfig.repo} @ ${ghConfig.branch}`);
+  } else if (ghConfig.owner && ghConfig.repo) {
+    setStatus('settingsStatus', 'warn', `⚠️ مخزن تنظیم است اما توکن وارد نشده. با هر رفرش باید دوباره وارد کنید.`);
+  } else {
+    setStatus('settingsStatus', 'warn', '⚠️ هنوز متصل نشده‌اید.');
+  }
+}
+
+function setStatus(elId, type, html) {
+  const el = document.getElementById(elId);
+  if (el) el.innerHTML = `<div class="status-box status-${type}">${html}</div>`;
+}
+
+async function testConnection() {
+  if (!ghToken) { setStatus('settingsStatus', 'err', '❌ ابتدا توکن را وارد کنید.'); return; }
+  if (!ghConfig.owner || !ghConfig.repo) { setStatus('settingsStatus', 'err', '❌ owner و repo را وارد کنید.'); return; }
+  setStatus('settingsStatus', 'warn', '⏳ در حال تست...');
+  try {
+    const res = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || `HTTP ${res.status}`);
+    }
+    const data = await res.json();
+    setStatus('settingsStatus', 'ok', `✅ موفق! مخزن: <b>${data.full_name}</b> | دسترسی نوشتن: ${data.permissions?.push ? '✅' : '❌'}`);
+    toast('اتصال موفق', 'success');
+  } catch(e) {
+    setStatus('settingsStatus', 'err', `❌ ${e.message}`);
+    toast('اتصال ناموفق', 'error');
+  }
+}
+
+/* LOAD APPS (Public) */
+async function loadAppsFromRepo() {
+  const grid = document.getElementById('appsGrid');
+  if (!ghConfig.owner || !ghConfig.repo) {
+    grid.innerHTML = `<div class="empty-state"><div class="icon">📦</div><p>به‌زودی برنامه‌ها اضافه می‌شوند.</p></div>`;
+    return;
+  }
+  grid.innerHTML = '<div class="spinner" style="grid-column:1/-1"></div>';
+  const urls = [
+    `https://cdn.jsdelivr.net/gh/${ghConfig.owner}/${ghConfig.repo}@${ghConfig.branch}/data/apps.json?t=${Date.now()}`,
+    `https://raw.githubusercontent.com/${ghConfig.owner}/${ghConfig.repo}/${ghConfig.branch}/data/apps.json?t=${Date.now()}`
+  ];
+  let loaded = false;
+  for (const url of urls) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const data = await res.json();
+      allApps = Array.isArray(data.apps) ? data.apps : [];
+      loaded = true;
+      break;
+    } catch(e) {}
+  }
+  if (!loaded) allApps = [];
+  renderAll();
+}
+
+function renderAll() { renderApps(); renderLatestWidget(); renderCatWidget(); }
+
+function renderApps() {
+  const grid = document.getElementById('appsGrid');
+  let list = [...allApps];
+  if (currentFilter && currentFilter !== 'همه') list = list.filter(a => a.category === currentFilter);
+  if (currentSearch) {
+    const q = currentSearch.toLowerCase();
+    list = list.filter(a => (a.name||'').toLowerCase().includes(q) || (a.description||'').toLowerCase().includes(q));
+  }
+  list.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+
+  document.getElementById('sectionTitle').textContent = currentFilter === 'همه' ? '📱 آخرین برنامه‌ها' : `📁 ${currentFilter}`;
+  document.getElementById('appCount').textContent = `${list.length} مورد`;
+
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state"><div class="icon">📭</div><p>برنامه‌ای یافت نشد.</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(app => `
+    <div class="app-card" onclick="openDetail('${app.id}')">
+      <span class="cat-badge">${escapeHtml(app.category || '')}</span>
+      <img class="app-card-icon" src="${assetUrl(app.icon)}" alt="${escapeHtml(app.name)}" onerror="this.src='${placeholderSvg()}'">
+      <h3>${escapeHtml(app.name)}</h3>
+      <div class="meta">
+        <span>v${escapeHtml(app.version || '—')}</span>
+        <span>•</span>
+        <span>${escapeHtml(app.size || '—')}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderLatestWidget() {
+  const ul = document.getElementById('latestApps');
+  const latest = [...allApps].sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||'')).slice(0,6);
+  if (!latest.length) { ul.innerHTML = '<li style="color:#94a3b8;font-size:13px;padding:6px">موردی نیست</li>'; return; }
+  ul.innerHTML = latest.map(a => `
+    <li><a onclick="openDetail('${a.id}')">
+      <span style="font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(a.name)}</span>
+      <span>v${escapeHtml(a.version || '—')}</span>
+    </a></li>
+  `).join('');
+}
+
+function renderCatWidget() {
+  const ul = document.getElementById('catWidget');
+  const cats = {};
+  allApps.forEach(a => { if (a.category) cats[a.category] = (cats[a.category]||0)+1; });
+  const entries = Object.entries(cats);
+  if (!entries.length) { ul.innerHTML = '<li style="color:#94a3b8;font-size:13px;padding:6px">—</li>'; return; }
+  ul.innerHTML = entries.map(([cat, count]) => `
+    <li><a onclick="filterByCategory('${escapeHtml(cat)}')">
+      <span>${escapeHtml(cat)}</span><span>${count}</span>
+    </a></li>
+  `).join('');
+}
+
+function assetUrl(path) {
+  if (!path) return placeholderSvg();
+  if (/^https?:\/\//.test(path)) return path;
+  return `https://cdn.jsdelivr.net/gh/${ghConfig.owner}/${ghConfig.repo}@${ghConfig.branch}/${path}`;
+}
+
+function placeholderSvg() {
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="#dbeafe" width="100" height="100" rx="20"/><text x="50" y="65" font-size="45" text-anchor="middle">📦</text></svg>');
+}
+
+/* FILTERS */
+function filterByCategory(cat) {
+  currentFilter = cat;
+  currentSearch = '';
+  document.getElementById('searchInput').value = '';
+  document.querySelectorAll('.cat-item').forEach(el => el.classList.toggle('active', el.dataset.cat === cat));
+  document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+  renderApps();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetFilter() {
+  currentFilter = 'همه';
+  currentSearch = '';
+  document.getElementById('searchInput').value = '';
+  document.querySelectorAll('.cat-item').forEach(el => el.classList.toggle('active', el.dataset.cat === 'همه'));
+  document.querySelectorAll('.nav-link').forEach((el, i) => el.classList.toggle('active', i === 0));
+  renderApps();
+}
+
+function doSearch() {
+  currentSearch = document.getElementById('searchInput').value.trim();
+  renderApps();
+}
+
+/* DETAIL MODAL */
+function openDetail(id) {
+  const app = allApps.find(a => a.id === id);
+  if (!app) return;
+  const box = document.getElementById('detailBox');
+  box.innerHTML = `
+    <button class="detail-close" onclick="closeDetail()">×</button>
+    <div class="detail-head">
+      <img src="${assetUrl(app.icon)}" alt="" onerror="this.src='${placeholderSvg()}'">
+      <div>
+        <h2>${escapeHtml(app.name)}</h2>
+        <p>${escapeHtml(app.dev || 'نامشخص')} • ${escapeHtml(app.category || '')}</p>
+      </div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-meta">
+        <div><span>نسخه</span><strong>${escapeHtml(app.version || '—')}</strong></div>
+        <div><span>حجم</span><strong>${escapeHtml(app.size || '—')}</strong></div>
+        <div><span>سیستم</span><strong>${escapeHtml(app.os || '—')}</strong></div>
+      </div>
+      <div class="detail-desc">${escapeHtml(app.description || 'بدون توضیحات')}</div>
+      <div class="detail-actions">
+        <a class="btn btn-blue" href="${escapeAttr(app.link)}" target="_blank" rel="noopener nofollow">⬇️ دانلود فایل</a>
+        <button class="btn btn-secondary" onclick="copyLink('${escapeAttr(app.link)}')">📋 کپی لینک</button>
+      </div>
+      <div class="download-note">
+        ⚠️ فایل از سرور خارجی دانلود می‌شود. لینک در تب جدید باز خواهد شد.
+      </div>
+    </div>
+  `;
+  document.getElementById('detailOverlay').classList.add('open');
+}
+
+function closeDetail() { document.getElementById('detailOverlay').classList.remove('open'); }
+
+function copyLink(url) {
+  navigator.clipboard.writeText(url).then(() => toast('لینک کپی شد', 'success')).catch(() => toast('کپی نشد', 'error'));
+}
+
+/* PUBLISH */
+async function publishApp() {
+  if (!ghToken) { toast('❌ ابتدا از تب «اتصال» توکن را وارد کنید', 'error'); switchTab('tab-settings'); return; }
+  if (!ghConfig.owner || !ghConfig.repo) { toast('❌ تنظیمات گیت‌هاب را کامل کنید', 'error'); switchTab('tab-settings'); return; }
+
+  const name = document.getElementById('appName').value.trim();
+  const category = document.getElementById('appCategory').value;
+  const version = document.getElementById('appVersion').value.trim();
+  const dev = document.getElementById('appDev').value.trim();
+  const size = document.getElementById('appSize').value.trim();
+  const os = document.getElementById('appOs').value.trim();
+  const link = document.getElementById('appLink').value.trim();
+  const description = document.getElementById('appDesc').value.trim();
+  const iconFile = document.getElementById('iconFile').files[0];
+
+  if (!name || !description || !link) { toast('نام، توضیحات و لینک الزامی است', 'error'); return; }
+  if (!/^https?:\/\//.test(link)) { toast('لینک باید با http یا https شروع شود', 'error'); return; }
+  if (!iconFile) { toast('آیکون را انتخاب کنید', 'error'); return; }
+  if (iconFile.size > 2 * 1024 * 1024) { toast('حجم آیکون نباید بیشتر از ۲MB باشد', 'error'); return; }
+
+  const btn = document.getElementById('publishBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ در حال انتشار...';
+
+  try {
+    const id = `app-${Date.now()}`;
+    const iconExt = (iconFile.name.split('.').pop() || 'png').toLowerCase();
+    const iconPath = `images/${id}.${iconExt}`;
+
+    setStatus('publishStatus', 'warn', '⏳ آپلود آیکون...');
+    const iconB64 = await fileToBase64(iconFile);
+    await ghPutFile(iconPath, iconB64, `SoftDL: add icon for ${name}`);
+
+    setStatus('publishStatus', 'warn', '⏳ به‌روزرسانی data/apps.json...');
+    const newApp = {
+      id, name, category,
+      version: version || '1.0',
+      dev: dev || '',
+      size: size || '—',
+      os: os || '—',
+      description,
+      link,
+      icon: iconPath,
+      createdAt: new Date().toISOString()
+    };
+
+    let currentApps = [];
+    try {
+      const existing = await ghGetFile('data/apps.json');
+      if (existing) {
+        const parsed = JSON.parse(existing.content);
+        currentApps = Array.isArray(parsed.apps) ? parsed.apps : [];
+      }
+    } catch(e) { currentApps = []; }
+
+    currentApps.unshift(newApp);
+    const jsonStr = JSON.stringify({ apps: currentApps, updatedAt: new Date().toISOString() }, null, 2);
+    const jsonB64 = btoa(unescape(encodeURIComponent(jsonStr)));
+    await ghPutFile('data/apps.json', jsonB64, `SoftDL: publish ${name}`);
+
+    allApps = currentApps;
+    renderAll();
+
+    setStatus('publishStatus', 'ok', `✅ «${name}» منتشر شد و برای همه قابل مشاهده است.`);
+    toast('🎉 منتشر شد', 'success');
+
+    document.getElementById('addAppForm').reset();
+    document.getElementById('iconPreview').textContent = '';
+    switchTab('tab-manage');
+  } catch(e) {
+    console.error(e);
+    setStatus('publishStatus', 'err', `❌ خطا: ${e.message}`);
+    toast('❌ انتشار ناموفق', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🚀 انتشار روی سایت';
+  }
+}
+
+/* MANAGE */
+function renderManageList() {
+  const wrap = document.getElementById('manageList');
+  if (!allApps.length) {
+    wrap.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>هنوز برنامه‌ای منتشر نشده.</p></div>';
+    return;
+  }
+  wrap.innerHTML = allApps.map(app => `
+    <div class="manage-item">
+      <img src="${assetUrl(app.icon)}" alt="" onerror="this.src='${placeholderSvg()}'">
+      <div class="info">
+        <h4>${escapeHtml(app.name)}</h4>
+        <small>${escapeHtml(app.category || '')} • v${escapeHtml(app.version || '—')} • ${escapeHtml(app.size || '—')}</small>
+      </div>
+      <button class="btn btn-danger" onclick="deleteApp('${app.id}')">🗑 حذف</button>
+    </div>
+  `).join('');
+}
+
+async function deleteApp(id) {
+  if (!ghToken) { toast('❌ ابتدا متصل شوید', 'error'); return; }
+  const app = allApps.find(a => a.id === id);
+  if (!app) return;
+  if (!confirm(`«${app.name}» حذف شود؟`)) return;
+  try {
+    toast('در حال حذف...', 'info');
+    try { await ghDeleteFile(app.icon, `SoftDL: delete icon of ${app.name}`); } catch(e) {}
+    const newApps = allApps.filter(a => a.id !== id);
+    const jsonStr = JSON.stringify({ apps: newApps, updatedAt: new Date().toISOString() }, null, 2);
+    const jsonB64 = btoa(unescape(encodeURIComponent(jsonStr)));
+    await ghPutFile('data/apps.json', jsonB64, `SoftDL: delete ${app.name}`);
+    allApps = newApps;
+    renderAll();
+    renderManageList();
+    toast('✅ حذف شد', 'success');
+  } catch(e) {
+    console.error(e);
+    toast(`❌ خطا: ${e.message}`, 'error');
+  }
+}
+
+async function reloadAppsFromRepo() {
+  if (!ghConfig.owner || !ghConfig.repo) { toast('ابتدا تنظیمات را کامل کنید', 'error'); return; }
+  toast('در حال بارگذاری...', 'info');
+  await loadAppsFromRepo();
+  toast('✅ بارگذاری شد', 'success');
+}
+
+/* UTILS */
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+let toastTimer = null;
+function toast(msg, type = 'info') {
+  const el = document.getElementById('toast');
+  el.className = `toast ${type} show`;
+  el.textContent = msg;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>
