@@ -96,7 +96,7 @@ button,input,select,textarea{font-family:inherit}
 .social-links a:hover{background:var(--primary)}
 .footer-bottom{border-top:1px solid #1e293b;padding:18px 0;text-align:center;font-size:13px}
 
-/* Admin (hidden - only Ctrl+Shift+A) */
+/* Admin */
 .admin-overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(6px);z-index:9999;display:none;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
 .admin-overlay.open{display:flex}
 .admin-panel{background:#fff;border-radius:16px;width:100%;max-width:920px;box-shadow:0 25px 50px rgba(0,0,0,.35);overflow:hidden;margin:auto}
@@ -311,7 +311,7 @@ button,input,select,textarea{font-family:inherit}
   </div>
 </footer>
 
-<!-- ADMIN PANEL (hidden - Ctrl+Shift+A) -->
+<!-- ADMIN PANEL (Ctrl+Shift+A) -->
 <div class="admin-overlay" id="adminOverlay">
   <div class="admin-panel">
     <div class="admin-header">
@@ -328,23 +328,23 @@ button,input,select,textarea{font-family:inherit}
     </div>
     <div class="admin-body">
 
-      <!-- Settings Tab -->
+      <!-- Settings -->
       <div class="tab-content active" id="tab-settings">
         <div id="settingsStatus"></div>
         <div class="form-row">
           <div class="form-group">
-            <label>نام کاربری گیت‌هاب *</label>
-            <input type="text" id="cfgOwner" placeholder="username">
+            <label>نام کاربری گیت‌هاب</label>
+            <input type="text" id="cfgOwner" readonly style="background:#f8fafc;color:#64748b">
           </div>
           <div class="form-group">
-            <label>نام مخزن *</label>
-            <input type="text" id="cfgRepo" placeholder="my-softdl">
+            <label>نام مخزن</label>
+            <input type="text" id="cfgRepo" readonly style="background:#f8fafc;color:#64748b">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>شاخه (Branch)</label>
-            <input type="text" id="cfgBranch" placeholder="main" value="main">
+            <input type="text" id="cfgBranch" readonly style="background:#f8fafc;color:#64748b">
           </div>
           <div class="form-group">
             <label>توکن گیت‌هاب *</label>
@@ -353,8 +353,8 @@ button,input,select,textarea{font-family:inherit}
         </div>
         <div class="form-group">
           <small style="background:#fef2f2;color:#991b1b;padding:10px;border-radius:8px;display:block;line-height:1.8">
-            🔒 <b>توجه:</b> توکن فقط در حافظه مرورگر نگه داشته می‌شود و با رفرش پاک می‌شود. هرگز در جایی ذخیره نمی‌شود.<br>
-            📌 ساخت توکن: <code>GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)</code> و دسترسی <b>repo</b> را فعال کنید.
+            🔒 توکن فقط در حافظه مرورگر نگه داشته می‌شود و با رفرش پاک می‌شود.<br>
+            📌 ساخت توکن: GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → دسترسی <b>repo</b> را فعال کنید.
           </small>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
@@ -364,7 +364,7 @@ button,input,select,textarea{font-family:inherit}
         </div>
       </div>
 
-      <!-- Add App Tab -->
+      <!-- Add App -->
       <div class="tab-content" id="tab-add">
         <form id="addAppForm" onsubmit="event.preventDefault();publishApp()">
           <div class="form-row">
@@ -408,7 +408,7 @@ button,input,select,textarea{font-family:inherit}
           <div class="form-group">
             <label>لینک دانلود *</label>
             <input type="url" id="appLink" required placeholder="https://example.com/file.apk">
-            <small>لینک مستقیم دانلود از هر سایتی — کاربر روی دکمه دانلود کلیک می‌کند و به این لینک می‌رود</small>
+            <small>لینک مستقیم دانلود از هر سایتی</small>
           </div>
           <div class="form-group">
             <label>توضیحات *</label>
@@ -431,9 +431,9 @@ button,input,select,textarea{font-family:inherit}
         </form>
       </div>
 
-      <!-- Manage Tab -->
+      <!-- Manage -->
       <div class="tab-content" id="tab-manage">
-        <div class="status-box status-warn">⚠️ برای حذف، روی دکمه قرمز کلیک کنید. تغییرات بلافاصله اعمال می‌شود.</div>
+        <div class="status-box status-warn">⚠️ برای حذف، روی دکمه قرمز کلیک کنید.</div>
         <div class="manage-list" id="manageList"></div>
       </div>
 
@@ -451,15 +451,19 @@ button,input,select,textarea{font-family:inherit}
 <script>
 /* =========================================================
    SoftDL - Hidden Admin Panel via GitHub API
-   - Open with Ctrl+Shift+A
-   - Token: only in memory
-   - Data: data/apps.json in GitHub repo
-   - Files: only icons uploaded; download links external
+   - Ctrl+Shift+A to open admin
+   - Token: only in memory (never saved)
+   - Repo: auto-filled = rl2011yasin-sketch/softdl
+   - Data: data/apps.json | Icons: images/
    ========================================================= */
 
+const DEFAULT_OWNER = 'rl2011yasin-sketch';
+const DEFAULT_REPO  = 'softdl';
+const DEFAULT_BRANCH = 'main';
 const LS_KEY = 'softdl_cfg_v1';
+
 let ghToken = '';
-let ghConfig = { owner: '', repo: '', branch: 'main' };
+let ghConfig = { owner: DEFAULT_OWNER, repo: DEFAULT_REPO, branch: DEFAULT_BRANCH };
 let allApps = [];
 let currentFilter = 'همه';
 let currentSearch = '';
@@ -486,7 +490,7 @@ function loadConfig() {
   } catch(e) {}
   document.getElementById('cfgOwner').value = ghConfig.owner;
   document.getElementById('cfgRepo').value = ghConfig.repo;
-  document.getElementById('cfgBranch').value = ghConfig.branch || 'main';
+  document.getElementById('cfgBranch').value = ghConfig.branch || DEFAULT_BRANCH;
 }
 
 function saveConfig() {
@@ -524,22 +528,39 @@ function previewIcon() {
   }
 }
 
-/* GITHUB API */
-async function ghApi(path, options = {}) {
+/* =========================================================
+   GITHUB API — Fixed CORS
+   - GET (public): without Authorization header
+   - PUT/DELETE: with Authorization
+   ========================================================= */
+async function ghGet(path) {
+  // GET بدون هدر Authorization → بدون CORS preflight
   const res = await fetch(`https://api.github.com${path}`, {
-    ...options,
     headers: {
-      'Authorization': `token ${ghToken}`,
       'Accept': 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      ...(options.headers || {})
+      'X-GitHub-Api-Version': '2022-11-28'
     }
   });
   return res;
 }
 
+async function ghWrite(path, method, body) {
+  // PUT/DELETE با Authorization
+  const res = await fetch(`https://api.github.com${path}`, {
+    method,
+    headers: {
+      'Authorization': `token ${ghToken}`,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  return res;
+}
+
 async function ghGetFile(path) {
-  const res = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
+  const res = await ghGet(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
   if (res.status === 404) return null;
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -551,7 +572,7 @@ async function ghGetFile(path) {
 }
 
 async function ghPutFile(path, base64Content, message) {
-  const existingRes = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
+  const existingRes = await ghGet(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
   let sha = null;
   if (existingRes.ok) {
     const existing = await existingRes.json();
@@ -562,11 +583,7 @@ async function ghPutFile(path, base64Content, message) {
   }
   const body = { message: message || `SoftDL: update ${path}`, content: base64Content, branch: ghConfig.branch };
   if (sha) body.sha = sha;
-  const res = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
+  const res = await ghWrite(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`, 'PUT', body);
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
     throw new Error(err.message || `خطا در آپلود ${path}`);
@@ -575,13 +592,13 @@ async function ghPutFile(path, base64Content, message) {
 }
 
 async function ghDeleteFile(path, message) {
-  const res = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
+  const res = await ghGet(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}`);
   if (!res.ok) return;
   const data = await res.json();
-  await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: message || `SoftDL: delete ${path}`, sha: data.sha, branch: ghConfig.branch })
+  await ghWrite(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`, 'DELETE', {
+    message: message || `SoftDL: delete ${path}`,
+    sha: data.sha,
+    branch: ghConfig.branch
   });
 }
 
@@ -596,30 +613,26 @@ function fileToBase64(file) {
 
 /* SETTINGS */
 function saveSettings() {
-  const owner = document.getElementById('cfgOwner').value.trim();
-  const repo = document.getElementById('cfgRepo').value.trim();
-  const branch = document.getElementById('cfgBranch').value.trim() || 'main';
   const token = document.getElementById('cfgToken').value.trim();
-  if (!owner || !repo || !token) {
-    setStatus('settingsStatus', 'err', '❌ نام کاربری، مخزن و توکن الزامی هستند.');
+  if (!token) {
+    setStatus('settingsStatus', 'err', '❌ توکن الزامی است.');
     return;
   }
-  ghConfig = { owner, repo, branch };
+  if (!/^(ghp_|github_pat_)/.test(token)) {
+    if (!confirm('⚠️ توکن به نظر معتبر نمی‌آید (باید با ghp_ یا github_pat_ شروع شود). ادامه می‌دهید؟')) return;
+  }
   ghToken = token;
   saveConfig();
-  setStatus('settingsStatus', 'ok', '✅ اتصال برقرار شد. توکن فقط در این تب فعال است.');
-  toast('اتصال برقرار شد', 'success');
+  setStatus('settingsStatus', 'ok', '✅ توکن در حافظه ثبت شد. حالا تست اتصال بزن.');
+  toast('توکن ثبت شد', 'success');
   refreshSettingsStatus();
-  loadAppsFromRepo();
 }
 
 function refreshSettingsStatus() {
   if (ghToken && ghConfig.owner && ghConfig.repo) {
-    setStatus('settingsStatus', 'ok', `✅ متصل به: ${ghConfig.owner}/${ghConfig.repo} @ ${ghConfig.branch}`);
-  } else if (ghConfig.owner && ghConfig.repo) {
-    setStatus('settingsStatus', 'warn', `⚠️ مخزن تنظیم است اما توکن وارد نشده. با هر رفرش باید دوباره وارد کنید.`);
+    setStatus('settingsStatus', 'ok', `✅ آماده — متصل به: ${ghConfig.owner}/${ghConfig.repo} @ ${ghConfig.branch}`);
   } else {
-    setStatus('settingsStatus', 'warn', '⚠️ هنوز متصل نشده‌اید.');
+    setStatus('settingsStatus', 'warn', `⚠️ مخزن: ${ghConfig.owner}/${ghConfig.repo} — برای شروع، توکن را وارد کنید.`);
   }
 }
 
@@ -630,24 +643,30 @@ function setStatus(elId, type, html) {
 
 async function testConnection() {
   if (!ghToken) { setStatus('settingsStatus', 'err', '❌ ابتدا توکن را وارد کنید.'); return; }
-  if (!ghConfig.owner || !ghConfig.repo) { setStatus('settingsStatus', 'err', '❌ owner و repo را وارد کنید.'); return; }
   setStatus('settingsStatus', 'warn', '⏳ در حال تست...');
   try {
-    const res = await ghApi(`/repos/${ghConfig.owner}/${ghConfig.repo}`);
+    const res = await fetch(`https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}`, {
+      headers: {
+        'Authorization': `token ${ghToken}`,
+        'Accept': 'application/vnd.github+json'
+      }
+    });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.message || `HTTP ${res.status}`);
     }
     const data = await res.json();
-    setStatus('settingsStatus', 'ok', `✅ موفق! مخزن: <b>${data.full_name}</b> | دسترسی نوشتن: ${data.permissions?.push ? '✅' : '❌'}`);
-    toast('اتصال موفق', 'success');
+    const canWrite = data.permissions?.push;
+    setStatus('settingsStatus', canWrite ? 'ok' : 'warn',
+      `${canWrite ? '✅' : '⚠️'} مخزن: <b>${data.full_name}</b> | دسترسی نوشتن: ${canWrite ? '✅ دارد' : '❌ ندارد (توکن باید repo scope داشته باشد)'}`);
+    toast(canWrite ? 'اتصال موفق' : 'توکن دسترسی نوشتن ندارد', canWrite ? 'success' : 'error');
   } catch(e) {
     setStatus('settingsStatus', 'err', `❌ ${e.message}`);
     toast('اتصال ناموفق', 'error');
   }
 }
 
-/* LOAD APPS (Public) */
+/* LOAD APPS (Public — everyone can see) */
 async function loadAppsFromRepo() {
   const grid = document.getElementById('appsGrid');
   if (!ghConfig.owner || !ghConfig.repo) {
@@ -809,7 +828,6 @@ function copyLink(url) {
 /* PUBLISH */
 async function publishApp() {
   if (!ghToken) { toast('❌ ابتدا از تب «اتصال» توکن را وارد کنید', 'error'); switchTab('tab-settings'); return; }
-  if (!ghConfig.owner || !ghConfig.repo) { toast('❌ تنظیمات گیت‌هاب را کامل کنید', 'error'); switchTab('tab-settings'); return; }
 
   const name = document.getElementById('appName').value.trim();
   const category = document.getElementById('appCategory').value;
@@ -927,7 +945,6 @@ async function deleteApp(id) {
 }
 
 async function reloadAppsFromRepo() {
-  if (!ghConfig.owner || !ghConfig.repo) { toast('ابتدا تنظیمات را کامل کنید', 'error'); return; }
   toast('در حال بارگذاری...', 'info');
   await loadAppsFromRepo();
   toast('✅ بارگذاری شد', 'success');
