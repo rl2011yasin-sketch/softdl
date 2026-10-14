@@ -2,34 +2,54 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>سافت دانلود | SoftDL</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{--primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#dbeafe;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--radius:14px;--shadow:0 1px 3px rgba(0,0,0,.06);--shadow-lg:0 10px 25px rgba(0,0,0,.1)}
-body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+html{scroll-behavior:smooth}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;overflow-x:hidden;padding-bottom:0}
 a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
-button,input,select,textarea{font-family:inherit}
+button,input,select,textarea{font-family:inherit;font-size:14px}
 .container{max-width:1200px;margin:0 auto;padding:0 16px}
+
+/* ============ HEADER ============ */
 .site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
-.header-inner{display:flex;align-items:center;gap:20px;padding:12px 16px}
+.header-inner{display:flex;align-items:center;gap:16px;padding:12px 16px}
 .logo a{display:flex;align-items:center;gap:10px}
-.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:12px;display:grid;place-items:center;color:#fff;font-size:22px;font-weight:800}
-.logo-text{font-weight:800;font-size:20px;line-height:1.2}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:12px;display:grid;place-items:center;color:#fff;font-size:22px;font-weight:800;flex-shrink:0}
+.logo-text{font-weight:800;font-size:18px;line-height:1.2}
 .logo-text small{display:block;font-size:10px;color:var(--muted);font-weight:600;letter-spacing:2px}
 .main-nav ul{display:flex;gap:2px;list-style:none}
-.main-nav a{padding:8px 14px;border-radius:8px;font-weight:600;font-size:14px;color:var(--muted);transition:.2s;cursor:pointer}
+.main-nav a{padding:8px 14px;border-radius:8px;font-weight:600;font-size:14px;color:var(--muted);transition:.2s;cursor:pointer;white-space:nowrap}
 .main-nav a:hover,.main-nav a.active{background:var(--primary-light);color:var(--primary)}
 .header-actions{margin-right:auto;display:flex;gap:10px;align-items:center}
 .search-box{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .search-box input{border:0;background:transparent;padding:10px 14px;outline:none;width:220px;font-size:13px}
 .search-box button{border:0;background:transparent;padding:0 12px;cursor:pointer;font-size:15px}
+.mobile-menu-btn{display:none;background:var(--bg);border:1px solid var(--border);width:42px;height:42px;border-radius:10px;cursor:pointer;font-size:20px;align-items:center;justify-content:center}
+.mobile-drawer{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);z-index:200;display:none;opacity:0;transition:.3s}
+.mobile-drawer.open{display:block;opacity:1}
+.drawer-panel{position:absolute;top:0;right:0;width:280px;height:100%;background:#fff;box-shadow:-10px 0 30px rgba(0,0,0,.2);padding:20px;transform:translateX(100%);transition:.3s;overflow-y:auto}
+.mobile-drawer.open .drawer-panel{transform:translateX(0)}
+.drawer-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.drawer-header h3{font-size:16px;font-weight:800}
+.drawer-close{background:var(--bg);border:0;width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:18px}
+.drawer-nav{display:flex;flex-direction:column;gap:6px}
+.drawer-nav a{padding:14px 16px;border-radius:10px;font-weight:600;font-size:15px;color:var(--text);cursor:pointer;transition:.2s;display:flex;align-items:center;gap:10px}
+.drawer-nav a:hover,.drawer-nav a.active{background:var(--primary-light);color:var(--primary)}
+
+/* ============ CATEGORY BAR ============ */
 .category-bar{background:#fff;border-bottom:1px solid var(--border)}
 .category-inner{display:flex;gap:6px;padding:10px 16px;overflow-x:auto;scrollbar-width:none}
 .category-inner::-webkit-scrollbar{display:none}
 .cat-item{padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;cursor:pointer;transition:.2s;border:1px solid transparent}
 .cat-item:hover,.cat-item.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ============ LAYOUT ============ */
 .main-layout{display:grid;grid-template-columns:280px 1fr;gap:22px;padding:22px 0}
 .sidebar{display:flex;flex-direction:column;gap:16px}
 .widget{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
@@ -39,79 +59,45 @@ button,input,select,textarea{font-family:inherit}
 .widget-list a{display:flex;justify-content:space-between;align-items:center;padding:9px 6px;font-size:13px;border-radius:8px;cursor:pointer}
 .widget-list a:hover{background:var(--bg);color:var(--primary)}
 .widget-list span{color:var(--muted);font-size:11px;background:var(--bg);padding:2px 8px;border-radius:10px}
+
+/* ============ HERO ============ */
 .hero-banner{background:linear-gradient(135deg,#2563eb,#7c3aed);border-radius:var(--radius);padding:38px 32px;color:#fff;margin-bottom:22px;position:relative;overflow:hidden}
+.hero-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 40%,rgba(255,255,255,.18),transparent 55%)}
 .hero-content{position:relative;z-index:1}
 .hero-content h2{font-size:26px;margin-bottom:8px;font-weight:800}
 .hero-content p{opacity:.92;margin-bottom:20px;font-size:14px}
 .btn{display:inline-block;padding:10px 22px;border-radius:10px;font-weight:700;font-size:14px;border:0;cursor:pointer;transition:.2s;text-align:center}
 .btn-primary{background:#fff;color:var(--primary)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
 .btn-blue{background:var(--primary);color:#fff}
 .btn-blue:hover{background:var(--primary-dark)}
+
+/* ============ SECTIONS ============ */
 .apps-section{margin-bottom:30px}
 .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .section-header h2{font-size:18px;font-weight:800}
 .view-all{font-size:13px;color:var(--primary);font-weight:700}
+
+/* ============ APP CARDS ============ */
 .apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
-.app-card{background:var(--card);border-radius:var(--radius);padding:16px 14px;box-shadow:var(--shadow);transition:.25s;cursor:pointer;border:1px solid transparent;position:relative}
-.app-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+.app-card{background:var(--card);border-radius:var(--radius);padding:16px 14px;box-shadow:var(--shadow);transition:.25s;cursor:pointer;border:1px solid transparent;position:relative;min-height:150px}
+.app-card:hover,.app-card:active{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
 .app-card-icon{width:66px;height:66px;border-radius:16px;margin:0 auto 10px;object-fit:cover;background:var(--bg)}
 .app-card h3{font-size:14px;text-align:center;margin-bottom:4px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .app-card .meta{font-size:11px;color:var(--muted);display:flex;justify-content:center;gap:6px}
 .app-card .cat-badge{position:absolute;top:8px;right:8px;background:var(--primary-light);color:var(--primary);font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px}
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1}
 .empty-state .icon{font-size:48px;margin-bottom:12px;opacity:.5}
+
+/* ============ FOOTER ============ */
 .site-footer{background:#0f172a;color:#cbd5e1;margin-top:40px;padding:40px 0 0}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;padding-bottom:30px}
 .footer-col h4{color:#fff;margin-bottom:14px;font-size:15px}
 .footer-col p{font-size:13px;line-height:1.9}
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13px}
 .footer-bottom{border-top:1px solid #1e293b;padding:18px 0;text-align:center;font-size:13px}
-.admin-overlay{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(6px);z-index:9999;display:none;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
-.admin-overlay.open{display:flex}
-.admin-panel{background:#fff;border-radius:16px;width:100%;max-width:920px;box-shadow:0 25px 50px rgba(0,0,0,.35);overflow:hidden;margin:auto}
-.admin-header{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
-.admin-header h2{font-size:17px;font-weight:800}
-.admin-close{background:rgba(255,255,255,.12);border:0;color:#fff;width:34px;height:34px;border-radius:10px;cursor:pointer;font-size:20px}
-.admin-tabs{display:flex;background:var(--bg);border-bottom:1px solid var(--border);overflow-x:auto}
-.admin-tab{flex:1;min-width:130px;padding:14px 10px;border:0;background:transparent;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
-.admin-tab.active{color:var(--primary);border-bottom-color:var(--primary);background:#fff}
-.admin-body{padding:22px;max-height:70vh;overflow-y:auto}
-.tab-content{display:none}.tab-content.active{display:block}
-.form-group{margin-bottom:14px}
-.form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-size:13px;outline:none;background:#fff}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}
-.form-group textarea{resize:vertical;min-height:80px;line-height:1.7}
-.form-group small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn-save{background:var(--primary);color:#fff;padding:11px 26px;font-size:14px}
-.btn-save:disabled{opacity:.6;cursor:not-allowed}
-.btn-danger{background:#ef4444;color:#fff;padding:8px 14px;font-size:12px}
-.btn-secondary{background:var(--bg);color:var(--text);border:1px solid var(--border);padding:8px 16px;font-size:13px}
-.file-drop{border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;cursor:pointer;background:var(--bg)}
-.file-drop:hover{border-color:var(--primary);background:var(--primary-light)}
-.file-drop .icon{font-size:28px;margin-bottom:6px;opacity:.6}
-.file-drop p{font-size:13px;font-weight:600}
-.file-drop small{color:var(--muted);font-size:11px}
-.file-drop input{display:none}
-.file-preview{margin-top:10px;font-size:12px;color:var(--primary);font-weight:600}
-.manage-list{display:flex;flex-direction:column;gap:10px}
-.manage-item{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:12px}
-.manage-item img{width:48px;height:48px;border-radius:12px;object-fit:cover;background:var(--bg)}
-.manage-item .info{flex:1;min-width:0}
-.manage-item .info h4{font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.manage-item .info small{color:var(--muted);font-size:12px}
-.status-box{padding:12px 14px;border-radius:10px;font-size:13px;margin-bottom:14px;line-height:1.9}
-.status-ok{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}
-.status-warn{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
-.status-err{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
-.toast{position:fixed;bottom:24px;left:24px;background:#1e293b;color:#fff;padding:13px 22px;border-radius:12px;box-shadow:var(--shadow-lg);transform:translateY(120px);opacity:0;transition:.35s;z-index:10001;font-size:14px;font-weight:600;max-width:340px}
-.toast.show{transform:translateY(0);opacity:1}
-.toast.success{background:#059669}.toast.error{background:#dc2626}.toast.info{background:#2563eb}
-.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:40px auto}
-@keyframes spin{to{transform:rotate(360deg)}}
 
-/* ===== صفحه اپ (Single App Page) ===== */
+/* ============ APP PAGE ============ */
 .app-page{display:none;padding:22px 0}
 .app-page.active{display:block}
 .home-page.hidden{display:none}
@@ -128,7 +114,7 @@ button,input,select,textarea{font-family:inherit}
 .tag{background:var(--primary-light);color:var(--primary);font-size:12px;font-weight:700;padding:4px 12px;border-radius:8px}
 .tag.gray{background:var(--bg);color:var(--muted)}
 .app-hero-info .download-btn{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:800;display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;transition:.2s;box-shadow:0 4px 14px rgba(37,99,235,.35)}
-.app-hero-info .download-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,99,235,.5)}
+.app-hero-info .download-btn:hover,.app-hero-info .download-btn:active{transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,99,235,.5)}
 .app-hero-info .download-btn.copied{background:linear-gradient(135deg,#059669,#10b981)}
 .app-content{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:start}
 .app-desc-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
@@ -145,72 +131,242 @@ button,input,select,textarea{font-family:inherit}
 .not-found .icon{font-size:64px;margin-bottom:14px;opacity:.4}
 .not-found h2{font-size:22px;font-weight:800;margin-bottom:10px}
 .not-found p{color:var(--muted);margin-bottom:20px}
+
+/* ============ ADMIN PAGE (full page) ============ */
+.admin-page{display:none;min-height:100vh;background:var(--bg)}
+.admin-page.active{display:block}
+.admin-topbar{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:16px 0;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-lg)}
+.admin-topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.admin-topbar h1{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px}
+.admin-topbar .back-btn{background:rgba(255,255,255,.12);color:#fff;padding:8px 16px;border-radius:10px;border:0;cursor:pointer;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.admin-topbar .back-btn:hover{background:rgba(255,255,255,.25)}
+.admin-tabs-bar{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:73px;z-index:99}
+.admin-tabs{display:flex;gap:2px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;max-width:1200px;margin:0 auto}
+.admin-tabs::-webkit-scrollbar{display:none}
+.admin-tab{padding:10px 20px;border:0;background:transparent;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-radius:10px;white-space:nowrap;transition:.2s}
+.admin-tab.active{background:var(--primary);color:#fff}
+.admin-content{max-width:920px;margin:0 auto;padding:22px 16px 60px}
+.admin-card{background:#fff;border-radius:16px;padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+.admin-card h2{font-size:17px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.admin-tabpanel{display:none}
+.admin-tabpanel.active{display:block}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:10px;font-size:14px;outline:none;background:#fff;transition:.2s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}
+.form-group textarea{resize:vertical;min-height:100px;line-height:1.7}
+.form-group small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-save{background:var(--primary);color:#fff;padding:12px 26px;font-size:14px;border-radius:10px;border:0;cursor:pointer;font-weight:700;transition:.2s}
+.btn-save:hover{background:var(--primary-dark)}
+.btn-save:disabled{opacity:.6;cursor:not-allowed}
+.btn-danger{background:#ef4444;color:#fff;padding:9px 16px;font-size:13px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+.btn-danger:hover{background:#dc2626}
+.btn-secondary{background:var(--bg);color:var(--text);border:1px solid var(--border);padding:9px 18px;font-size:13px;border-radius:10px;cursor:pointer;font-weight:600}
+.btn-secondary:hover{background:var(--border)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.file-drop{border:2px dashed var(--border);border-radius:12px;padding:22px;text-align:center;cursor:pointer;background:var(--bg);transition:.2s}
+.file-drop:hover{border-color:var(--primary);background:var(--primary-light)}
+.file-drop .icon{font-size:28px;margin-bottom:6px;opacity:.6}
+.file-drop p{font-size:13px;font-weight:600}
+.file-drop small{color:var(--muted);font-size:11px}
+.file-drop input{display:none}
+.file-preview{margin-top:10px;font-size:12px;color:var(--primary);font-weight:600}
+.manage-list{display:flex;flex-direction:column;gap:10px}
+.manage-item{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--border);border-radius:12px;background:#fff}
+.manage-item img{width:52px;height:52px;border-radius:12px;object-fit:cover;background:var(--bg);flex-shrink:0}
+.manage-item .info{flex:1;min-width:0}
+.manage-item .info h4{font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.manage-item .info small{color:var(--muted);font-size:12px}
+.status-box{padding:12px 14px;border-radius:10px;font-size:13px;margin-bottom:14px;line-height:1.9}
+.status-ok{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}
+.status-warn{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+.status-err{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+.admin-login-lock{max-width:380px;margin:80px auto;background:#fff;border-radius:20px;padding:32px 24px;box-shadow:var(--shadow-lg);text-align:center}
+.admin-login-lock .icon{font-size:56px;margin-bottom:14px}
+.admin-login-lock h2{font-size:20px;font-weight:800;margin-bottom:8px}
+.admin-login-lock p{color:var(--muted);font-size:13px;margin-bottom:18px}
+
+/* ============ MOBILE BOTTOM NAV ============ */
+.mobile-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom,0)}
+.mobile-bottom-nav .nav-inner{display:flex;justify-content:space-around;align-items:center;padding:8px 0}
+.mobile-bottom-nav .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;transition:.2s;border:0;background:transparent}
+.mobile-bottom-nav .nav-item .icon{font-size:22px;line-height:1}
+.mobile-bottom-nav .nav-item.active,.mobile-bottom-nav .nav-item:active{color:var(--primary)}
+
+/* ============ TOAST ============ */
+.toast{position:fixed;bottom:90px;left:16px;right:16px;background:#1e293b;color:#fff;padding:14px 22px;border-radius:12px;box-shadow:var(--shadow-lg);transform:translateY(120px);opacity:0;transition:.35s;z-index:10001;font-size:14px;font-weight:600;text-align:center;max-width:400px;margin:0 auto}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{background:#059669}.toast.error{background:#dc2626}.toast.info{background:#2563eb}
+
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:40px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============ RESPONSIVE ============ */
 @media(max-width:900px){
-  .main-layout{grid-template-columns:1fr}.sidebar{order:2}.main-nav{display:none}
-  .footer-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}
-  .hero-content h2{font-size:20px}.app-content{grid-template-columns:1fr}
-  .app-hero{flex-direction:column;align-items:center;text-align:center}
-  .app-hero-info .tags{justify-content:center}
+  .main-layout{grid-template-columns:1fr}
+  .sidebar{order:2}
+  .main-nav{display:none}
+  .mobile-menu-btn{display:flex}
+  .search-box input{width:160px}
+  .footer-grid{grid-template-columns:1fr;text-align:center;gap:22px}
+  .form-row{grid-template-columns:1fr}
+  .hero-content h2{font-size:22px}
+  .app-content{grid-template-columns:1fr}
   .app-meta-card{position:static}
+  .admin-tabs-bar{top:73px}
 }
-@media(max-width:520px){
-  .search-box{display:none}.apps-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .app-hero-icon{width:90px;height:90px}
+@media(max-width:600px){
+  body{padding-bottom:70px}
+  .container{padding:0 12px}
+  .site-header .search-box{display:none}
+  .header-inner{gap:10px;padding:10px 12px}
+  .logo-text{font-size:16px}
+  .logo-icon{width:38px;height:38px;font-size:20px}
+  .mobile-bottom-nav{display:block}
+  .main-layout{padding:14px 0;gap:14px}
+  .hero-banner{padding:26px 20px;margin-bottom:16px}
+  .hero-content h2{font-size:19px}
+  .hero-content p{font-size:13px;margin-bottom:16px}
+  .apps-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .app-card{padding:12px 10px;min-height:140px;border-radius:12px}
+  .app-card-icon{width:56px;height:56px;border-radius:14px;margin-bottom:8px}
+  .app-card h3{font-size:13px}
+  .app-card .meta{font-size:10px}
+  .section-header h2{font-size:16px}
+  .widget{padding:14px}
+  .widget-title{font-size:14px}
+  .app-hero{padding:18px;gap:14px;flex-direction:column;align-items:center;text-align:center}
+  .app-hero-icon{width:96px;height:96px;border-radius:20px}
   .app-hero-info h1{font-size:20px}
+  .app-hero-info .tags{justify-content:center}
+  .app-hero-info .download-btn{width:100%;justify-content:center;padding:14px}
+  .app-desc-card{padding:16px}
+  .app-desc-card p{font-size:13.5px;line-height:1.9}
+  .breadcrumb{font-size:12px}
+  .admin-content{padding:14px 12px 60px}
+  .admin-card{padding:18px;border-radius:14px}
+  .admin-card h2{font-size:15px}
+  .admin-topbar h1{font-size:15px}
+  .admin-topbar .back-btn{padding:7px 14px;font-size:12px}
+  .admin-tabs{padding:8px 12px}
+  .admin-tab{padding:8px 16px;font-size:13px}
+  .manage-item{padding:10px;gap:10px}
+  .manage-item img{width:44px;height:44px}
+  .manage-item .btn-danger{padding:7px 12px;font-size:12px}
+  .footer-grid{padding-bottom:20px}
+  .site-footer{padding:30px 0 0}
+}
+@media(max-width:360px){
+  .apps-grid{grid-template-columns:1fr 1fr}
+  .app-card h3{font-size:12px}
 }
 </style>
 </head>
 <body>
 
+<!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="container header-inner">
-    <div class="logo"><a href="#/" onclick="goHome();return false"><div class="logo-icon">S</div><div class="logo-text">سافت دانلود<small>SOFTDL</small></div></a></div>
-    <nav class="main-nav"><ul>
-      <li><a href="#/" class="nav-link" data-nav="همه" onclick="goCat('همه');return false">صفحه اصلی</a></li>
-      <li><a href="#/cat/اپلیکیشن" class="nav-link" data-nav="اپلیکیشن" onclick="goCat('اپلیکیشن');return false">اپلیکیشن</a></li>
-      <li><a href="#/cat/بازی" class="nav-link" data-nav="بازی" onclick="goCat('بازی');return false">بازی</a></li>
-      <li><a href="#/cat/ابزار" class="nav-link" data-nav="ابزار" onclick="goCat('ابزار');return false">ابزار</a></li>
-      <li><a href="#/cat/آموزشی" class="nav-link" data-nav="آموزشی" onclick="goCat('آموزشی');return false">آموزشی</a></li>
-    </ul></nav>
+    <div class="logo">
+      <a href="#/" onclick="goHome();return false">
+        <div class="logo-icon">S</div>
+        <div class="logo-text">سافت دانلود<small>SOFTDL</small></div>
+      </a>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#/" class="nav-link" data-nav="همه" onclick="goCat('همه');return false">صفحه اصلی</a></li>
+        <li><a href="#/cat/اپلیکیشن" class="nav-link" data-nav="اپلیکیشن" onclick="goCat('اپلیکیشن');return false">اپلیکیشن</a></li>
+        <li><a href="#/cat/بازی" class="nav-link" data-nav="بازی" onclick="goCat('بازی');return false">بازی</a></li>
+        <li><a href="#/cat/ابزار" class="nav-link" data-nav="ابزار" onclick="goCat('ابزار');return false">ابزار</a></li>
+        <li><a href="#/cat/آموزشی" class="nav-link" data-nav="آموزشی" onclick="goCat('آموزشی');return false">آموزشی</a></li>
+      </ul>
+    </nav>
     <div class="header-actions">
-      <div class="search-box"><input type="text" id="searchInput" placeholder="جستجو..." onkeydown="if(event.key==='Enter')doSearch()"><button onclick="doSearch()">🔍</button></div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="جستجو..." onkeydown="if(event.key==='Enter')doSearch()">
+        <button onclick="doSearch()">🔍</button>
+      </div>
+      <button class="mobile-menu-btn" onclick="openDrawer()" aria-label="منو">☰</button>
     </div>
   </div>
 </header>
 
+<!-- ============ MOBILE DRAWER ============ -->
+<div class="mobile-drawer" id="mobileDrawer" onclick="if(event.target===this)closeDrawer()">
+  <div class="drawer-panel">
+    <div class="drawer-header">
+      <h3>📱 منوی سافت دانلود</h3>
+      <button class="drawer-close" onclick="closeDrawer()">×</button>
+    </div>
+    <nav class="drawer-nav">
+      <a onclick="goCat('همه');closeDrawer();return false" class="drawer-link" data-drawer="همه">🏠 صفحه اصلی</a>
+      <a onclick="goCat('اپلیکیشن');closeDrawer();return false" class="drawer-link" data-drawer="اپلیکیشن">📱 اپلیکیشن</a>
+      <a onclick="goCat('بازی');closeDrawer();return false" class="drawer-link" data-drawer="بازی">🎮 بازی</a>
+      <a onclick="goCat('ابزار');closeDrawer();return false" class="drawer-link" data-drawer="ابزار">🔧 ابزار</a>
+      <a onclick="goCat('آموزشی');closeDrawer();return false" class="drawer-link" data-drawer="آموزشی">📚 آموزشی</a>
+      <a onclick="goCat('شخصی‌سازی');closeDrawer();return false" class="drawer-link" data-drawer="شخصی‌سازی">🎨 شخصی‌سازی</a>
+      <a onclick="goCat('امنیتی');closeDrawer();return false" class="drawer-link" data-drawer="امنیتی">🔒 امنیتی</a>
+      <a onclick="goCat('مالتی‌مدیا');closeDrawer();return false" class="drawer-link" data-drawer="مالتی‌مدیا">🎬 مالتی‌مدیا</a>
+    </nav>
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+      <div class="search-box" style="width:100%">
+        <input type="text" id="drawerSearch" placeholder="جستجو..." style="width:100%" onkeydown="if(event.key==='Enter'){document.getElementById('searchInput').value=this.value;doSearch();closeDrawer();goHome();}">
+        <button onclick="document.getElementById('searchInput').value=document.getElementById('drawerSearch').value;doSearch();closeDrawer();goHome();">🔍</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ============ HOME PAGE ============ -->
 <div id="homePage" class="home-page">
-  <div class="category-bar"><div class="container category-inner">
-    <span class="cat-item active" data-cat="همه" onclick="goCat('همه')">همه</span>
-    <span class="cat-item" data-cat="اپلیکیشن" onclick="goCat('اپلیکیشن')">اپلیکیشن</span>
-    <span class="cat-item" data-cat="بازی" onclick="goCat('بازی')">بازی</span>
-    <span class="cat-item" data-cat="ابزار" onclick="goCat('ابزار')">ابزار</span>
-    <span class="cat-item" data-cat="آموزشی" onclick="goCat('آموزشی')">آموزشی</span>
-    <span class="cat-item" data-cat="شخصی‌سازی" onclick="goCat('شخصی‌سازی')">شخصی‌سازی</span>
-    <span class="cat-item" data-cat="امنیتی" onclick="goCat('امنیتی')">امنیتی</span>
-    <span class="cat-item" data-cat="مالتی‌مدیا" onclick="goCat('مالتی‌مدیا')">مالتی‌مدیا</span>
-  </div></div>
+  <div class="category-bar">
+    <div class="container category-inner">
+      <span class="cat-item active" data-cat="همه" onclick="goCat('همه')">همه</span>
+      <span class="cat-item" data-cat="اپلیکیشن" onclick="goCat('اپلیکیشن')">اپلیکیشن</span>
+      <span class="cat-item" data-cat="بازی" onclick="goCat('بازی')">بازی</span>
+      <span class="cat-item" data-cat="ابزار" onclick="goCat('ابزار')">ابزار</span>
+      <span class="cat-item" data-cat="آموزشی" onclick="goCat('آموزشی')">آموزشی</span>
+      <span class="cat-item" data-cat="شخصی‌سازی" onclick="goCat('شخصی‌سازی')">شخصی‌سازی</span>
+      <span class="cat-item" data-cat="امنیتی" onclick="goCat('امنیتی')">امنیتی</span>
+      <span class="cat-item" data-cat="مالتی‌مدیا" onclick="goCat('مالتی‌مدیا')">مالتی‌مدیا</span>
+    </div>
+  </div>
 
   <main class="container main-layout">
     <aside class="sidebar">
-      <div class="widget"><h3 class="widget-title">آخرین برنامه‌ها</h3><ul class="widget-list" id="latestApps"><li style="color:#94a3b8;font-size:13px;padding:6px">در حال بارگذاری...</li></ul></div>
-      <div class="widget"><h3 class="widget-title">دسته‌بندی‌ها</h3><ul class="widget-list" id="catWidget"></ul></div>
+      <div class="widget">
+        <h3 class="widget-title">آخرین برنامه‌ها</h3>
+        <ul class="widget-list" id="latestApps"><li style="color:#94a3b8;font-size:13px;padding:6px">در حال بارگذاری...</li></ul>
+      </div>
+      <div class="widget">
+        <h3 class="widget-title">دسته‌بندی‌ها</h3>
+        <ul class="widget-list" id="catWidget"></ul>
+      </div>
     </aside>
     <div class="content-area">
-      <div class="hero-banner"><div class="hero-content">
-        <h2>جدیدترین برنامه‌ها را دانلود کنید</h2>
-        <p>برنامه‌های اندروید، ویندوز و بازی‌های روز دنیا</p>
-        <button class="btn btn-primary" onclick="goHome()">مشاهده همه ↓</button>
-      </div></div>
+      <div class="hero-banner">
+        <div class="hero-content">
+          <h2>جدیدترین برنامه‌ها را دانلود کنید</h2>
+          <p>برنامه‌های اندروید، ویندوز و بازی‌های روز دنیا</p>
+          <button class="btn btn-primary" onclick="goHome()">مشاهده همه ↓</button>
+        </div>
+      </div>
       <section class="apps-section">
-        <div class="section-header"><h2 id="sectionTitle">📱 آخرین برنامه‌ها</h2><span class="view-all" id="appCount"></span></div>
-        <div id="appsGrid" class="apps-grid"><div class="empty-state"><div class="icon">⏳</div><p>در حال بارگذاری...</p></div></div>
+        <div class="section-header">
+          <h2 id="sectionTitle">📱 آخرین برنامه‌ها</h2>
+          <span class="view-all" id="appCount"></span>
+        </div>
+        <div id="appsGrid" class="apps-grid">
+          <div class="empty-state"><div class="icon">⏳</div><p>در حال بارگذاری...</p></div>
+        </div>
       </section>
     </div>
   </main>
 </div>
 
-<!-- ============ APP PAGE (single) ============ -->
+<!-- ============ APP PAGE ============ -->
 <div id="appPage" class="app-page">
   <div class="container">
     <div class="breadcrumb" id="breadcrumb"></div>
@@ -218,89 +374,178 @@ button,input,select,textarea{font-family:inherit}
   </div>
 </div>
 
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-col"><h4>درباره سافت دانلود</h4><p>سافت دانلود (SoftDL) مرجع دانلود برنامه‌ها و بازی‌های اندروید و ویندوز.</p></div>
-    <div class="footer-col"><h4>لینک‌های سریع</h4><ul><li><a href="#/" onclick="goHome();return false">صفحه اصلی</a></li><li><a href="#">درباره ما</a></li><li><a href="#">تماس با ما</a></li></ul></div>
-    <div class="footer-col"><h4>شبکه‌های اجتماعی</h4><div style="font-size:22px">🐙 ✈️ 📷</div></div>
+<!-- ============ ADMIN PAGE (full page) ============ -->
+<div id="adminPage" class="admin-page">
+  <div class="admin-topbar">
+    <div class="container admin-topbar-inner">
+      <h1>⚙️ پنل مدیریت سافت دانلود</h1>
+      <button class="back-btn" onclick="goHome()">🏠 بازگشت به سایت</button>
+    </div>
   </div>
-  <div class="footer-bottom"><p>© ۱۴۰۵ سافت دانلود | SoftDL</p></div>
-</footer>
 
-<div class="admin-overlay" id="adminOverlay">
-  <div class="admin-panel">
-    <div class="admin-header">
-      <div><h2>⚙️ پنل مدیریت</h2><small>SoftDL Admin</small></div>
-      <button class="admin-close" onclick="closeAdmin()">×</button>
+  <div id="adminLock" class="admin-content" style="display:block">
+    <div class="admin-login-lock">
+      <div class="icon">🔐</div>
+      <h2>ورود به پنل</h2>
+      <p>برای دسترسی، توکن گیت‌هاب خود را وارد کنید</p>
+      <div class="form-group" style="text-align:right">
+        <label>توکن گیت‌هاب</label>
+        <input type="password" id="lockToken" placeholder="ghp_xxxxxxxxxxxxxxxx" autocomplete="off">
+        <small>توکن روی این دستگاه ذخیره می‌شود و دفعه بعد خودکار وارد می‌شوی</small>
+      </div>
+      <button class="btn-save" style="width:100%" onclick="unlockAdmin()">🔓 ورود</button>
     </div>
-    <div class="admin-tabs">
-      <button class="admin-tab active" data-tab="tab-settings" onclick="switchTab('tab-settings')">🔑 اتصال</button>
-      <button class="admin-tab" data-tab="tab-add" onclick="switchTab('tab-add')">➕ افزودن</button>
-      <button class="admin-tab" data-tab="tab-manage" onclick="switchTab('tab-manage')">📋 مدیریت</button>
+  </div>
+
+  <div id="adminMain" style="display:none">
+    <div class="admin-tabs-bar">
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="tab-add" onclick="switchAdminTab('tab-add')">➕ افزودن برنامه</button>
+        <button class="admin-tab" data-tab="tab-manage" onclick="switchAdminTab('tab-manage')">📋 مدیریت برنامه‌ها</button>
+        <button class="admin-tab" data-tab="tab-settings" onclick="switchAdminTab('tab-settings')">🔑 تنظیمات</button>
+      </div>
     </div>
-    <div class="admin-body">
-      <div class="tab-content active" id="tab-settings">
-        <div id="settingsStatus"></div>
-        <div class="form-row">
-          <div class="form-group"><label>نام کاربری گیت‌هاب</label><input type="text" id="cfgOwner" readonly style="background:#f8fafc;color:#64748b"></div>
-          <div class="form-group"><label>نام مخزن</label><input type="text" id="cfgRepo" readonly style="background:#f8fafc;color:#64748b"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>شاخه</label><input type="text" id="cfgBranch" readonly style="background:#f8fafc;color:#64748b"></div>
-          <div class="form-group"><label>توکن گیت‌هاب *</label><input type="password" id="cfgToken" placeholder="ghp_xxxxxxxxxxxxxxxx" autocomplete="off"></div>
-        </div>
-        <div class="form-group"><small style="background:#ecfdf5;color:#065f46;padding:10px;border-radius:8px;display:block;line-height:1.8">✅ توکن برای همیشه روی این دستگاه ذخیره می‌شود. فقط روی کامپیوتر شخصی خودت استفاده کن.</small></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
-          <button class="btn btn-save" onclick="saveSettings()">💾 ذخیره</button>
-          <button class="btn btn-secondary" onclick="testConnection()">🔌 تست</button>
-          <button class="btn btn-secondary" onclick="reloadAppsFromRepo(true)">🔄 بارگذاری اجباری</button>
-          <button class="btn btn-danger" onclick="forgetToken()">🗑 فراموش کردن توکن</button>
+
+    <div class="admin-content">
+      <!-- ADD TAB -->
+      <div class="admin-tabpanel active" id="tab-add">
+        <div class="admin-card">
+          <h2>➕ افزودن برنامه جدید</h2>
+          <form id="addAppForm" onsubmit="event.preventDefault();publishApp()">
+            <div class="form-row">
+              <div class="form-group">
+                <label>نام برنامه *</label>
+                <input type="text" id="appName" required placeholder="مثلا: تلگرام">
+              </div>
+              <div class="form-group">
+                <label>دسته‌بندی *</label>
+                <select id="appCategory" required>
+                  <option value="اپلیکیشن">اپلیکیشن</option>
+                  <option value="بازی">بازی</option>
+                  <option value="ابزار">ابزار</option>
+                  <option value="آموزشی">آموزشی</option>
+                  <option value="شخصی‌سازی">شخصی‌سازی</option>
+                  <option value="امنیتی">امنیتی</option>
+                  <option value="مالتی‌مدیا">مالتی‌مدیا</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>نسخه</label><input type="text" id="appVersion" placeholder="10.5.2"></div>
+              <div class="form-group"><label>توسعه‌دهنده</label><input type="text" id="appDev" placeholder="Telegram FZ-LLC"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>حجم فایل</label><input type="text" id="appSize" placeholder="25 MB"></div>
+              <div class="form-group"><label>سیستم‌عامل</label><input type="text" id="appOs" placeholder="Android 5.0+"></div>
+            </div>
+            <div class="form-group">
+              <label>لینک دانلود *</label>
+              <input type="url" id="appLink" required placeholder="https://example.com/file.apk">
+              <small>لینک مستقیم دانلود از هر سایتی</small>
+            </div>
+            <div class="form-group">
+              <label>توضیحات *</label>
+              <textarea id="appDesc" required placeholder="توضیحات کامل برنامه..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>آیکون برنامه *</label>
+              <div class="file-drop" onclick="document.getElementById('iconFile').click()">
+                <div class="icon">🖼️</div>
+                <p>برای انتخاب آیکون کلیک کنید</p>
+                <small>PNG، JPG یا WebP — حداکثر ۲MB</small>
+                <input type="file" id="iconFile" accept="image/*" onchange="previewIcon()">
+              </div>
+              <div class="file-preview" id="iconPreview"></div>
+            </div>
+            <div id="publishStatus"></div>
+            <button type="submit" class="btn-save" id="publishBtn" style="width:100%;margin-top:8px">🚀 انتشار روی سایت</button>
+          </form>
         </div>
       </div>
 
-      <div class="tab-content" id="tab-add">
-        <form id="addAppForm" onsubmit="event.preventDefault();publishApp()">
+      <!-- MANAGE TAB -->
+      <div class="admin-tabpanel" id="tab-manage">
+        <div class="admin-card">
+          <h2>📋 مدیریت برنامه‌ها</h2>
+          <div class="status-box status-warn">⚠️ برای حذف، دکمه قرمز را بزنید. فایل‌ها و آیکون از گیت‌هاب هم حذف می‌شوند.</div>
+          <div class="manage-list" id="manageList"></div>
+        </div>
+      </div>
+
+      <!-- SETTINGS TAB -->
+      <div class="admin-tabpanel" id="tab-settings">
+        <div class="admin-card">
+          <h2>🔑 تنظیمات اتصال</h2>
+          <div id="settingsStatus"></div>
           <div class="form-row">
-            <div class="form-group"><label>نام *</label><input type="text" id="appName" required></div>
-            <div class="form-group"><label>دسته‌بندی *</label>
-              <select id="appCategory" required>
-                <option value="اپلیکیشن">اپلیکیشن</option><option value="بازی">بازی</option>
-                <option value="ابزار">ابزار</option><option value="آموزشی">آموزشی</option>
-                <option value="شخصی‌سازی">شخصی‌سازی</option><option value="امنیتی">امنیتی</option>
-                <option value="مالتی‌مدیا">مالتی‌مدیا</option>
-              </select>
-            </div>
+            <div class="form-group"><label>نام کاربری گیت‌هاب</label><input type="text" id="cfgOwner" readonly style="background:#f8fafc;color:#64748b"></div>
+            <div class="form-group"><label>نام مخزن</label><input type="text" id="cfgRepo" readonly style="background:#f8fafc;color:#64748b"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>نسخه</label><input type="text" id="appVersion" placeholder="10.5.2"></div>
-            <div class="form-group"><label>توسعه‌دهنده</label><input type="text" id="appDev"></div>
+            <div class="form-group"><label>شاخه</label><input type="text" id="cfgBranch" readonly style="background:#f8fafc;color:#64748b"></div>
+            <div class="form-group"><label>توکن گیت‌هاب *</label><input type="password" id="cfgToken" placeholder="ghp_xxxxxxxxxxxxxxxx" autocomplete="off"></div>
           </div>
-          <div class="form-row">
-            <div class="form-group"><label>حجم</label><input type="text" id="appSize" placeholder="25 MB"></div>
-            <div class="form-group"><label>سیستم‌عامل</label><input type="text" id="appOs" placeholder="Android 5.0+"></div>
-          </div>
-          <div class="form-group"><label>لینک دانلود *</label><input type="url" id="appLink" required placeholder="https://..."></div>
-          <div class="form-group"><label>توضیحات *</label><textarea id="appDesc" required></textarea></div>
           <div class="form-group">
-            <label>آیکون *</label>
-            <div class="file-drop" onclick="document.getElementById('iconFile').click()">
-              <div class="icon">🖼️</div><p>انتخاب آیکون</p><small>حداکثر ۲MB</small>
-              <input type="file" id="iconFile" accept="image/*" onchange="previewIcon()">
-            </div>
-            <div class="file-preview" id="iconPreview"></div>
+            <small style="background:#ecfdf5;color:#065f46;padding:10px;border-radius:8px;display:block;line-height:1.8">
+              ✅ توکن برای همیشه روی این دستگاه ذخیره می‌شود. فقط روی دستگاه شخصی خودت استفاده کن.
+            </small>
           </div>
-          <div id="publishStatus"></div>
-          <button type="submit" class="btn btn-save" id="publishBtn" style="width:100%;margin-top:8px">🚀 انتشار</button>
-        </form>
-      </div>
-
-      <div class="tab-content" id="tab-manage">
-        <div class="status-box status-warn">⚠️ برای حذف، دکمه قرمز را بزنید. فایل‌ها و آیکون از گیت‌هاب هم حذف می‌شوند.</div>
-        <div class="manage-list" id="manageList"></div>
+          <div class="btn-row">
+            <button class="btn-save" onclick="saveSettings()">💾 ذخیره</button>
+            <button class="btn-secondary" onclick="testConnection()">🔌 تست اتصال</button>
+            <button class="btn-secondary" onclick="reloadAppsFromRepo(true)">🔄 بارگذاری اجباری</button>
+            <button class="btn-danger" onclick="forgetToken()">🗑 فراموش کردن توکن</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="siteFooter">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>درباره سافت دانلود</h4>
+      <p>سافت دانلود (SoftDL) مرجع دانلود برنامه‌ها و بازی‌های اندروید و ویندوز. تمام فایل‌ها از منابع معتبر جمع‌آوری می‌شوند.</p>
+    </div>
+    <div class="footer-col">
+      <h4>لینک‌های سریع</h4>
+      <ul>
+        <li><a href="#/" onclick="goHome();return false">صفحه اصلی</a></li>
+        <li><a href="#/cat/اپلیکیشن" onclick="goCat('اپلیکیشن');return false">اپلیکیشن</a></li>
+        <li><a href="#/cat/بازی" onclick="goCat('بازی');return false">بازی</a></li>
+        <li><a href="#/cat/ابزار" onclick="goCat('ابزار');return false">ابزار</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>شبکه‌های اجتماعی</h4>
+      <div style="font-size:22px">🐙 ✈️ 📷</div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© ۱۴۰۵ سافت دانلود | SoftDL — تمامی حقوق محفوظ است</p></div>
+</footer>
+
+<!-- ============ MOBILE BOTTOM NAV ============ -->
+<nav class="mobile-bottom-nav" id="mobileBottomNav">
+  <div class="nav-inner">
+    <button class="nav-item active" data-mnav="همه" onclick="goCat('همه')">
+      <span class="icon">🏠</span><span>خانه</span>
+    </button>
+    <button class="nav-item" data-mnav="اپلیکیشن" onclick="goCat('اپلیکیشن')">
+      <span class="icon">📱</span><span>اپ</span>
+    </button>
+    <button class="nav-item" data-mnav="بازی" onclick="goCat('بازی')">
+      <span class="icon">🎮</span><span>بازی</span>
+    </button>
+    <button class="nav-item" data-mnav="ابزار" onclick="goCat('ابزار')">
+      <span class="icon">🔧</span><span>ابزار</span>
+    </button>
+    <button class="nav-item" onclick="openDrawer()">
+      <span class="icon">☰</span><span>بیشتر</span>
+    </button>
+  </div>
+</nav>
 
 <div class="toast" id="toast"></div>
 
@@ -308,8 +553,8 @@ button,input,select,textarea{font-family:inherit}
 const DEFAULT_OWNER = 'rl2011yasin-sketch';
 const DEFAULT_REPO  = 'softdl';
 const DEFAULT_BRANCH = 'main';
-const LS_CONFIG = 'softdl_cfg_v3';
-const LS_TOKEN  = 'softdl_token_v3';
+const LS_CONFIG = 'softdl_cfg_v4';
+const LS_TOKEN  = 'softdl_token_v4';
 
 let ghToken = '';
 let ghConfig = { owner: DEFAULT_OWNER, repo: DEFAULT_REPO, branch: DEFAULT_BRANCH };
@@ -322,10 +567,9 @@ let lastCategory = 'همه';
 document.addEventListener('DOMContentLoaded', () => {
   loadConfig();
   loadAppsFromRepo();
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a' || e.key === 'آ')) { e.preventDefault(); toggleAdmin(); }
-  });
   window.addEventListener('hashchange', handleRoute);
+  // سوايپ بستن drawer
+  setupDrawerSwipe();
 });
 
 function loadConfig() {
@@ -335,7 +579,6 @@ function loadConfig() {
     if (saved.repo) ghConfig.repo = saved.repo;
     if (saved.branch) ghConfig.branch = saved.branch;
   } catch(e) {}
-  // ✅ توکن دائمی
   const savedToken = localStorage.getItem(LS_TOKEN);
   if (savedToken) ghToken = savedToken;
   document.getElementById('cfgOwner').value = ghConfig.owner;
@@ -343,7 +586,7 @@ function loadConfig() {
   document.getElementById('cfgBranch').value = ghConfig.branch || DEFAULT_BRANCH;
   if (ghToken) {
     document.getElementById('cfgToken').value = ghToken;
-    setTimeout(() => refreshSettingsStatus(), 100);
+    document.getElementById('lockToken').value = ghToken;
   }
 }
 function saveConfig() { localStorage.setItem(LS_CONFIG, JSON.stringify(ghConfig)); }
@@ -367,11 +610,41 @@ function handleRoute() {
   const hash = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
   const homePage = document.getElementById('homePage');
   const appPage = document.getElementById('appPage');
+  const adminPage = document.getElementById('adminPage');
+  const footer = document.getElementById('siteFooter');
+  const bottomNav = document.getElementById('mobileBottomNav');
+  const header = document.querySelector('.site-header');
+
+  // Reset all
+  homePage.classList.add('hidden');
+  appPage.classList.remove('active');
+  adminPage.classList.remove('active');
+
+  if (hash === 'adminsoftdl' || hash === 'adminsoftdl/') {
+    // ✅ ADMIN PAGE
+    footer.style.display = 'none';
+    bottomNav.style.display = 'none';
+    header.style.display = 'none';
+    adminPage.classList.add('active');
+    document.title = 'پنل مدیریت | سافت دانلود';
+    // چک لاگین
+    if (ghToken) {
+      showAdminMain();
+    } else {
+      showAdminLock();
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    return;
+  }
+
+  // Non-admin pages
+  footer.style.display = '';
+  bottomNav.style.display = '';
+  header.style.display = '';
 
   if (hash.startsWith('app/')) {
     const id = hash.slice(4);
     const app = allApps.find(a => a.id === id);
-    homePage.classList.add('hidden');
     appPage.classList.add('active');
     if (app) renderAppPage(app);
     else renderNotFound();
@@ -380,16 +653,76 @@ function handleRoute() {
     const cat = hash.slice(4);
     lastCategory = cat;
     homePage.classList.remove('hidden');
-    appPage.classList.remove('active');
     _filterByCategory(cat);
     document.title = cat + ' | سافت دانلود';
   } else {
     lastCategory = 'همه';
     homePage.classList.remove('hidden');
-    appPage.classList.remove('active');
     _filterByCategory('همه');
     document.title = 'سافت دانلود | SoftDL';
   }
+  updateMobileNavActive();
+}
+
+/* ============ ADMIN ============ */
+function showAdminLock() {
+  document.getElementById('adminLock').style.display = 'block';
+  document.getElementById('adminMain').style.display = 'none';
+}
+function showAdminMain() {
+  document.getElementById('adminLock').style.display = 'none';
+  document.getElementById('adminMain').style.display = 'block';
+  refreshSettingsStatus();
+  renderManageList();
+}
+function unlockAdmin() {
+  const t = document.getElementById('lockToken').value.trim();
+  if (!t) { toast('❌ توکن را وارد کنید', 'error'); return; }
+  ghToken = t;
+  localStorage.setItem(LS_TOKEN, t);
+  saveConfig();
+  document.getElementById('cfgToken').value = t;
+  toast('✅ خوش آمدید', 'success');
+  showAdminMain();
+}
+function switchAdminTab(tabId) {
+  document.querySelectorAll('.admin-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+  document.querySelectorAll('.admin-tabpanel').forEach(c => c.classList.toggle('active', c.id === tabId));
+  if (tabId === 'tab-manage') renderManageList();
+  if (tabId === 'tab-settings') refreshSettingsStatus();
+}
+function previewIcon() {
+  const input = document.getElementById('iconFile');
+  const preview = document.getElementById('iconPreview');
+  if (input.files && input.files[0]) {
+    const f = input.files[0];
+    preview.textContent = `✓ ${f.name} (${(f.size/1024).toFixed(1)} KB)`;
+  } else preview.textContent = '';
+}
+
+/* ============ MOBILE DRAWER ============ */
+function openDrawer() {
+  document.getElementById('mobileDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function setupDrawerSwipe() {
+  const drawer = document.getElementById('mobileDrawer');
+  let startX = 0;
+  drawer.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+  drawer.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (dx > 80) closeDrawer(); // سوايپ به راست = بستن
+  });
+}
+
+function updateMobileNavActive() {
+  document.querySelectorAll('[data-mnav]').forEach(el => {
+    el.classList.toggle('active', el.dataset.mnav === currentFilter);
+  });
 }
 
 /* ============ APP PAGE ============ */
@@ -397,7 +730,6 @@ function renderAppPage(app) {
   document.title = app.name + ' | سافت دانلود';
   const cat = app.category || 'همه';
 
-  // Breadcrumb
   document.getElementById('breadcrumb').innerHTML = `
     <a href="#/" onclick="goHome();return false">🏠 خانه</a>
     <span class="sep">/</span>
@@ -406,7 +738,6 @@ function renderAppPage(app) {
     <span style="color:var(--text);font-weight:700">${escapeHtml(app.name)}</span>
   `;
 
-  // Content
   document.getElementById('appPageContent').innerHTML = `
     <div class="app-hero">
       <img class="app-hero-icon" src="${assetUrl(app.icon)}" alt="${escapeHtml(app.name)}" onerror="this.src='${placeholderSvg()}'">
@@ -440,7 +771,7 @@ function renderAppPage(app) {
         <div class="meta-row"><span>حجم</span><span>${escapeHtml(app.size || '—')}</span></div>
         <div class="meta-row"><span>سیستم‌عامل</span><span>${escapeHtml(app.os || '—')}</span></div>
         <div class="meta-row"><span>توسعه‌دهنده</span><span>${escapeHtml(app.dev || '—')}</span></div>
-        <button class="btn btn-secondary" style="width:100%;margin-top:12px" onclick="copyCurrentLink()">🔗 کپی لینک صفحه</button>
+        <button class="btn-secondary" style="width:100%;margin-top:12px" onclick="copyCurrentLink()">🔗 کپی لینک صفحه</button>
       </div>
     </div>
   `;
@@ -454,16 +785,14 @@ function renderNotFound() {
       <div class="icon">🔍</div>
       <h2>برنامه پیدا نشد</h2>
       <p>این برنامه حذف شده یا آدرس اشتباه است.</p>
-      <button class="btn btn-blue" onclick="goHome()">بازگشت به خانه</button>
+      <button class="btn-blue btn" onclick="goHome()">بازگشت به خانه</button>
     </div>
   `;
 }
 
 function startDownload(url, btn) {
   if (!url) { toast('لینک موجود نیست', 'error'); return; }
-  // باز کردن در تب جدید
   window.open(url, '_blank', 'noopener,noreferrer');
-  // انیمیشن موفقیت
   const original = btn.innerHTML;
   btn.classList.add('copied');
   btn.innerHTML = '✅ در حال دانلود...';
@@ -475,43 +804,24 @@ function startDownload(url, btn) {
 
 function copyCurrentLink() {
   const url = location.href;
-  navigator.clipboard.writeText(url).then(() => toast('🔗 لینک صفحه کپی شد', 'success')).catch(() => toast('کپی نشد', 'error'));
+  navigator.clipboard.writeText(url).then(() => toast('🔗 لینک کپی شد', 'success')).catch(() => toast('کپی نشد', 'error'));
 }
 
-/* ============ FILTER (داخلی) ============ */
+/* ============ FILTER ============ */
 function _filterByCategory(cat) {
   currentFilter = cat;
   currentSearch = '';
   document.getElementById('searchInput').value = '';
   document.querySelectorAll('.cat-item').forEach(el => el.classList.toggle('active', el.dataset.cat === cat));
   document.querySelectorAll('.nav-link').forEach(el => el.classList.toggle('active', el.dataset.nav === cat));
+  document.querySelectorAll('.drawer-link').forEach(el => el.classList.toggle('active', el.dataset.drawer === cat));
   renderApps();
+  updateMobileNavActive();
 }
 
 function doSearch() {
   currentSearch = document.getElementById('searchInput').value.trim();
   renderApps();
-}
-
-/* ============ ADMIN ============ */
-function toggleAdmin() {
-  const ov = document.getElementById('adminOverlay');
-  ov.classList.toggle('open');
-  if (ov.classList.contains('open')) { refreshSettingsStatus(); renderManageList(); }
-}
-function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
-function switchTab(tabId) {
-  document.querySelectorAll('.admin-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === tabId));
-  if (tabId === 'tab-manage') renderManageList();
-}
-function previewIcon() {
-  const input = document.getElementById('iconFile');
-  const preview = document.getElementById('iconPreview');
-  if (input.files && input.files[0]) {
-    const f = input.files[0];
-    preview.textContent = `✓ ${f.name} (${(f.size/1024).toFixed(1)} KB)`;
-  } else preview.textContent = '';
 }
 
 /* ============ GITHUB API ============ */
@@ -549,20 +859,13 @@ async function ghPutFile(path, base64Content, message) {
 
 async function ghDeleteFile(path, message) {
   const res = await ghFetch(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}?ref=${ghConfig.branch}&t=${Date.now()}`);
-  if (!res.ok) {
-    if (res.status === 404) return; // قبلاً حذف شده
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `HTTP ${res.status}`);
-  }
+  if (!res.ok) { if (res.status === 404) return; const err = await res.json().catch(() => ({})); throw new Error(err.message || `HTTP ${res.status}`); }
   const data = await res.json();
   const delRes = await ghFetch(`/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`, {
     method: 'DELETE', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: message || `SoftDL: delete ${path}`, sha: data.sha, branch: ghConfig.branch })
   });
-  if (!delRes.ok) {
-    const err = await delRes.json().catch(() => ({}));
-    throw new Error(err.message || `HTTP ${delRes.status}`);
-  }
+  if (!delRes.ok) { const err = await delRes.json().catch(() => ({})); throw new Error(err.message || `HTTP ${delRes.status}`); }
 }
 
 function fileToBase64(file) {
@@ -579,9 +882,9 @@ function saveSettings() {
   const token = document.getElementById('cfgToken').value.trim();
   if (!token) { setStatus('settingsStatus', 'err', '❌ توکن الزامی.'); return; }
   ghToken = token;
-  localStorage.setItem(LS_TOKEN, token); // ✅ دائمی
+  localStorage.setItem(LS_TOKEN, token);
   saveConfig();
-  setStatus('settingsStatus', 'ok', '✅ توکن برای همیشه روی این دستگاه ذخیره شد.');
+  setStatus('settingsStatus', 'ok', '✅ توکن برای همیشه ذخیره شد.');
   toast('توکن ذخیره شد', 'success');
   refreshSettingsStatus();
 }
@@ -591,9 +894,10 @@ function forgetToken() {
   ghToken = '';
   localStorage.removeItem(LS_TOKEN);
   document.getElementById('cfgToken').value = '';
+  document.getElementById('lockToken').value = '';
   setStatus('settingsStatus', 'warn', '🗑 توکن پاک شد.');
   toast('توکن حذف شد', 'info');
-  refreshSettingsStatus();
+  showAdminLock();
 }
 
 function refreshSettingsStatus() {
@@ -621,7 +925,7 @@ async function testConnection() {
   }
 }
 
-/* ============ LOAD APPS ============ */
+/* ============ LOAD ============ */
 async function loadAppsFromRepo(force = false) {
   const grid = document.getElementById('appsGrid');
   if (grid) grid.innerHTML = '<div class="spinner" style="grid-column:1/-1"></div>';
@@ -704,7 +1008,7 @@ function placeholderSvg() {
 
 /* ============ PUBLISH ============ */
 async function publishApp() {
-  if (!ghToken) { toast('❌ اول توکن', 'error'); switchTab('tab-settings'); return; }
+  if (!ghToken) { toast('❌ اول توکن', 'error'); goHome(); return; }
   const name = document.getElementById('appName').value.trim();
   const category = document.getElementById('appCategory').value;
   const version = document.getElementById('appVersion').value.trim();
@@ -757,24 +1061,24 @@ async function publishApp() {
     toast('🎉 منتشر شد', 'success');
     document.getElementById('addAppForm').reset();
     document.getElementById('iconPreview').textContent = '';
-    switchTab('tab-manage');
+    switchAdminTab('tab-manage');
   } catch(e) {
     setStatus('publishStatus', 'err', `❌ ${e.message}`);
     toast('❌ ناموفق', 'error');
   } finally {
-    btn.disabled = false; btn.textContent = '🚀 انتشار';
+    btn.disabled = false; btn.textContent = '🚀 انتشار روی سایت';
   }
 }
 
 /* ============ MANAGE ============ */
 function renderManageList() {
   const wrap = document.getElementById('manageList');
-  if (!allApps.length) { wrap.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>خالی است.</p></div>'; return; }
+  if (!allApps.length) { wrap.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>هنوز برنامه‌ای منتشر نشده.</p></div>'; return; }
   wrap.innerHTML = allApps.map(app => `
     <div class="manage-item">
       <img src="${assetUrl(app.icon)}" onerror="this.src='${placeholderSvg()}'">
       <div class="info"><h4>${escapeHtml(app.name)}</h4><small>${escapeHtml(app.category || '')} • v${escapeHtml(app.version || '—')}</small></div>
-      <button class="btn btn-danger" onclick="deleteApp('${app.id}')">🗑 حذف</button>
+      <button class="btn-danger" onclick="deleteApp('${app.id}')">🗑 حذف</button>
     </div>`).join('');
 }
 
@@ -784,20 +1088,12 @@ async function deleteApp(id) {
   if (!app || !confirm(`«${app.name}» برای همیشه حذف شود؟`)) return;
   try {
     toast('در حال حذف...', 'info');
-    // 1) حذف آیکون از گیت‌هاب
     try { await ghDeleteFile(app.icon, `SoftDL: delete icon of ${app.name}`); } catch(e) { console.warn('icon delete:', e); }
-    // 2) حذف از apps.json
     const newApps = allApps.filter(a => a.id !== id);
     const jsonStr = JSON.stringify({ apps: newApps, updatedAt: new Date().toISOString() }, null, 2);
     const jsonB64 = btoa(unescape(encodeURIComponent(jsonStr)));
     await ghPutFile('data/apps.json', jsonB64, `SoftDL: delete ${app.name}`);
-
-    // 3) آپدیت حافظه و UI
     allApps = newApps; renderAll(); renderManageList();
-
-    // 4) اگر تو صفحه همون اپ بودیم، برگرد به خانه
-    if (location.hash === '#/app/' + id) location.hash = '#/';
-
     await new Promise(r => setTimeout(r, 1500));
     await loadAppsFromRepo();
     toast('✅ حذف شد', 'success');
@@ -830,4 +1126,4 @@ function toast(msg, type = 'info') {
 }
 </script>
 </body>
-</html>
+                  </html>
